@@ -1,10 +1,10 @@
-# Outfit Stands Plus Forked Changes
+# Changelog
 
-Always update this file when changing the mod.
-
-## Unreleased
+## 2026-05-02
 
 ### Added
+
+- Added a README and Steam Workshop description for the documentation refresh.
 - Added `deploy.ps1` to build the source repository and deploy runtime files to the Steam RimWorld mod folder.
 - Added custom naming support for armor stands, including automatic names based on the assigned pawn nickname.
 - Added rename support for all stand variants: adult, kid, mechanized adult, mechanized kid, mending adult, and mending kid stands.
@@ -16,6 +16,7 @@ Always update this file when changing the mod.
 - Added invalid minified stand fallback text for dev-spawned `OutfitStandPlusMinified` instances.
 
 ### Changed
+
 - Moved the source repository workflow to `E:\Coding\Rimworld\Outfit Stands Plus Forked`, with the Steam RimWorld mod folder treated as a runtime deploy target.
 - Stopped tracking generated runtime assemblies in Git; deploy now produces `Assemblies/OutfitStandsPlus.dll`.
 - Removed the broken missing `postbuild.ps1` project hook.
@@ -32,6 +33,7 @@ Always update this file when changing the mod.
 - All shared assignment and command behavior applies through the common stand comps used by the mod-added variants.
 
 ### Fixed
+
 - Fixed apparel and weapon swap paths that could leave items on the floor during normal stand use.
 - Fixed stale transfer plans when other mods change pawn apparel during a stand job.
 - Fixed stand jobs starting while Gear Up And Go or Defensive Positions Forked owns the pawn's current gear or movement flow.
@@ -40,6 +42,7 @@ Always update this file when changing the mod.
 - Fixed ineffective max assignment override by setting the assignable comp property count directly.
 
 ### Verified
+
 - Built `Source/OutfitStandsPlus/OutfitStandsPlus.csproj` in Release with `0` warnings and `0` errors.
 - Verified XML parses after keyed translation updates.
 - Confirmed the compiled DLL was deployed to `Assemblies/OutfitStandsPlus.dll`.
