@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
-namespace OutfitStandsPlus.ThingComps
+namespace OutfitStandsPlusForked.ThingComps
 {
-    public class CompProperties_OutfitStandsPlusMainComp : CompProperties
+    public class CompProperties_OutfitStandsPlusForkedMainComp : CompProperties
     {
-        public CompProperties_OutfitStandsPlusMainComp()
+        public CompProperties_OutfitStandsPlusForkedMainComp()
         {
-            this.compClass = typeof(OutfitStandsPlusMainComp);
+            this.compClass = typeof(OutfitStandsPlusForkedMainComp);
         }
 
-        public CompProperties_OutfitStandsPlusMainComp(Type compClass)
+        public CompProperties_OutfitStandsPlusForkedMainComp(Type compClass)
         {
             this.compClass = compClass;
         }
     }
     
-    public class OutfitStandsPlusMainComp: ThingComp
+    public class OutfitStandsPlusForkedMainComp: ThingComp
     {
         private bool _allowAddingItems = true;
 
@@ -32,8 +32,8 @@ namespace OutfitStandsPlus.ThingComps
             get
             {
                 var power = parent.GetComp<CompPowerTrader>();
-                var modSettings = LoadedModManager.GetMod<OutfitStandsPlusMod>()
-                    .GetSettings<OutfitStandsPlusModSettings>();
+                var modSettings = LoadedModManager.GetMod<OutfitStandsPlusForkedMod>()
+                    .GetSettings<OutfitStandsPlusForkedModSettings>();
                 return (power != null && power.PowerOn ? modSettings.EquipSpeedFactorPowered : modSettings.EquipSpeedFactorUnpowered) * 0.01m;
             }
         }
@@ -54,8 +54,8 @@ namespace OutfitStandsPlus.ThingComps
             Command_Toggle command = new Command_Toggle();
             command.icon = TexCommand.ForbidOff;
             command.isActive = () => AllowAddingItems;
-            command.defaultLabel = "OutfitStandsPlus_AllowAddingItems_Label".Translate();
-            command.defaultDesc = "OutfitStandsPlus_AllowAddingItems_Desc".Translate();
+            command.defaultLabel = "OutfitStandsPlusForked_AllowAddingItems_Label".Translate();
+            command.defaultDesc = "OutfitStandsPlusForked_AllowAddingItems_Desc".Translate();
             command.toggleAction = delegate { AllowAddingItems = !AllowAddingItems; };
             yield return command;
         }

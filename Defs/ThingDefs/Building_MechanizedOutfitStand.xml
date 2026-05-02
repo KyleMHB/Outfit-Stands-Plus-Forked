@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <ThingDef ParentName="OutfitStandBase" Name="OutfitStandsPlus_MechanizedOutfitStandBase" Abstract="True">
+    <ThingDef ParentName="OutfitStandBase" Name="OutfitStandsPlusForked_MechanizedOutfitStandBase" Abstract="True">
         <description>A small display that showcases a single outfit. Saves space and can be used to quickly change clothing.\nMechanized for extra changing speed.</description>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,1)</interactionCellOffset>
@@ -22,19 +22,19 @@
                 <basePowerConsumption>50</basePowerConsumption>
             </li>
             <li Class="CompProperties_Flickable"/>
-            <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusMainComp">
+            <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedMainComp">
             </li>
-            <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusStandComp">
+            <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp">
             </li>
         </comps>
         <researchPrerequisites>
             <li>OutfitStandsPlus_MechanizedOutfitStandsResearch</li>
         </researchPrerequisites>
     </ThingDef>
-    <ThingDef ParentName="OutfitStandsPlus_MechanizedOutfitStandBase">
+    <ThingDef ParentName="OutfitStandsPlusForked_MechanizedOutfitStandBase">
         <label>mechanized outfit stand</label>
         <defName>OutfitStandsPlus_MechanizedOutfitStand</defName>
-        <thingClass>OutfitStandsPlus.Things.MechanizedOutfitStand</thingClass>
+        <thingClass>OutfitStandsPlusForked.Things.MechanizedOutfitStand</thingClass>
         <stuffCategories>
             <li>Metallic</li>
         </stuffCategories>
@@ -54,14 +54,14 @@
             </fixedStorageSettings>
         </building>
         <comps>
-            <li Class="OutfitStandsPlus.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusAdult">
+            <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedAdult">
             </li>
         </comps>
     </ThingDef>
-    <ThingDef ParentName="OutfitStandsPlus_MechanizedOutfitStandBase">
+    <ThingDef ParentName="OutfitStandsPlusForked_MechanizedOutfitStandBase">
         <label>mechanized kid outfit stand</label>
         <defName>OutfitStandsPlus_MechanizedKidOutfitStand</defName>
-        <thingClass>OutfitStandsPlus.Things.MechanizedKidOutfitStand</thingClass>
+        <thingClass>OutfitStandsPlusForked.Things.MechanizedKidOutfitStand</thingClass>
         <stuffCategories>
             <li>Metallic</li>
         </stuffCategories>
@@ -81,7 +81,7 @@
             </fixedStorageSettings>
         </building>
         <comps>
-            <li Class="OutfitStandsPlus.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusKid">
+            <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedKid">
             </li>
         </comps>
     </ThingDef>

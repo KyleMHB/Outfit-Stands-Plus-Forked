@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 
-namespace OutfitStandsPlus.Things
+namespace OutfitStandsPlusForked.Things
 {
     public class MechanizedOutfitStand: Building_OutfitStand
     {

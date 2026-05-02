@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <ThingDef ParentName="OutfitStandBase" Name="OutfitStandsPlus_MendingOutfitStandBase" Abstract="True">
+    <ThingDef ParentName="OutfitStandBase" Name="OutfitStandsPlusForked_MendingOutfitStandBase" Abstract="True">
         <description>A small display that showcases a single outfit. Saves space and can be used to quickly change clothing.\nMechanized for extra changing speed and uses mechanites to repair stored items.</description>
         <hasInteractionCell>True</hasInteractionCell>
         <interactionCellOffset>(0,0,1)</interactionCellOffset>
@@ -23,9 +23,9 @@
                 <basePowerConsumption>150</basePowerConsumption>
             </li>
             <li Class="CompProperties_Flickable"/>
-            <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusMainComp">
+            <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedMainComp">
             </li>
-            <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusStandComp">
+            <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp">
             </li>
         </comps>
         <tickerType>Rare</tickerType>
@@ -33,10 +33,10 @@
             <li>OutfitStandsPlus_MendingOutfitStandsResearch</li>
         </researchPrerequisites>
     </ThingDef>
-    <ThingDef ParentName="OutfitStandsPlus_MendingOutfitStandBase">
+    <ThingDef ParentName="OutfitStandsPlusForked_MendingOutfitStandBase">
         <label>mending outfit stand</label>
         <defName>OutfitStandsPlus_MendingOutfitStand</defName>
-        <thingClass>OutfitStandsPlus.Things.MendingOutfitStand</thingClass>
+        <thingClass>OutfitStandsPlusForked.Things.MendingOutfitStand</thingClass>
         <stuffCategories>
             <li>Metallic</li>
         </stuffCategories>
@@ -56,14 +56,14 @@
             </fixedStorageSettings>
         </building>
         <comps>
-            <li Class="OutfitStandsPlus.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusAdult">
+            <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedAdult">
             </li>
         </comps>
     </ThingDef>
-    <ThingDef ParentName="OutfitStandsPlus_MendingOutfitStandBase">
+    <ThingDef ParentName="OutfitStandsPlusForked_MendingOutfitStandBase">
         <label>mending kid outfit stand</label>
         <defName>OutfitStandsPlus_MendingKidOutfitStand</defName>
-        <thingClass>OutfitStandsPlus.Things.MendingKidOutfitStand</thingClass>
+        <thingClass>OutfitStandsPlusForked.Things.MendingKidOutfitStand</thingClass>
         <stuffCategories>
             <li>Metallic</li>
         </stuffCategories>
@@ -83,7 +83,7 @@
             </fixedStorageSettings>
         </building>
         <comps>
-            <li Class="OutfitStandsPlus.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusKid">
+            <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedKid">
             </li>
         </comps>
     </ThingDef>

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using OutfitStandsPlus.Utility;
-using OutfitStandsPlus.ThingComps;
+using OutfitStandsPlusForked.Utility;
+using OutfitStandsPlusForked.ThingComps;
 using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace OutfitStandsPlus.Jobs
+namespace OutfitStandsPlusForked.Jobs
 {
-    public class JobDriver_OutfitStandsPlusReturnToStand : JobDriver
+    public class JobDriver_OutfitStandsPlusForkedReturnToStand : JobDriver
     {
         private int duration;
         private HashSet<Apparel> wornApparelToTransferToStand;
@@ -78,7 +78,7 @@ namespace OutfitStandsPlus.Jobs
                 }
             }
             
-            var mainComp = OutfitStand.GetComp<OutfitStandsPlusMainComp>();
+            var mainComp = OutfitStand.GetComp<OutfitStandsPlusForkedMainComp>();
             if (mainComp != null)
             {
                 var newDuration = mainComp.ApplyEquipSpeedFactor(duration);
@@ -89,8 +89,8 @@ namespace OutfitStandsPlus.Jobs
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            JobDriver_OutfitStandsPlusReturnToStand f = this;
-            f.FailOnBurningImmobile<JobDriver_OutfitStandsPlusReturnToStand>(TargetIndex.A);
+            JobDriver_OutfitStandsPlusForkedReturnToStand f = this;
+            f.FailOnBurningImmobile<JobDriver_OutfitStandsPlusForkedReturnToStand>(TargetIndex.A);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell)
                 .FailOnDespawnedNullOrForbidden<Toil>(TargetIndex.A);
             Toil toil1 = ToilMaker.MakeToil(nameof(MakeNewToils));

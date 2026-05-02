@@ -4,17 +4,17 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace OutfitStandsPlus.ThingComps
+namespace OutfitStandsPlusForked.ThingComps
 {
-    public class CompProperties_OutfitStandsPlusStandComp : CompProperties
+    public class CompProperties_OutfitStandsPlusForkedStandComp : CompProperties
     {
-        public CompProperties_OutfitStandsPlusStandComp()
+        public CompProperties_OutfitStandsPlusForkedStandComp()
         {
-            compClass = typeof(OutfitStandsPlusStandComp);
+            compClass = typeof(OutfitStandsPlusForkedStandComp);
         }
     }
 
-    public class OutfitStandsPlusStandComp : ThingComp
+    public class OutfitStandsPlusForkedStandComp : ThingComp
     {
         private string customName;
         private List<int> syncedApparelPolicyIds = new List<int>();
@@ -26,7 +26,7 @@ namespace OutfitStandsPlus.ThingComps
         {
             get
             {
-                var assignmentComp = Stand?.GetComp<CompAssignableToPawn_OutfitStandsPlusBase>();
+                var assignmentComp = Stand?.GetComp<CompAssignableToPawn_OutfitStandsPlusForkedBase>();
                 return assignmentComp?.AssignedPawns.FirstOrDefault();
             }
         }
@@ -38,7 +38,7 @@ namespace OutfitStandsPlus.ThingComps
                 Pawn assignedPawn = AssignedPawn;
                 if (assignedPawn != null)
                 {
-                    return "OutfitStandsPlus_AutoStandName".Translate(GetPawnNickName(assignedPawn));
+                    return "OutfitStandsPlusForked_AutoStandName".Translate(GetPawnNickName(assignedPawn));
                 }
 
                 if (!customName.NullOrEmpty())
@@ -111,16 +111,16 @@ namespace OutfitStandsPlus.ThingComps
             yield return new Command_Action
             {
                 icon = TexButton.Rename,
-                defaultLabel = "OutfitStandsPlus_RenameStand_Label".Translate(),
-                defaultDesc = "OutfitStandsPlus_RenameStand_Desc".Translate(),
-                action = delegate { Find.WindowStack.Add(new Dialog_OutfitStandsPlusRenameStand(this)); }
+                defaultLabel = "OutfitStandsPlusForked_RenameStand_Label".Translate(),
+                defaultDesc = "OutfitStandsPlusForked_RenameStand_Desc".Translate(),
+                action = delegate { Find.WindowStack.Add(new Dialog_OutfitStandsPlusForkedRenameStand(this)); }
             };
 
             yield return new Command_Action
             {
                 icon = TexButton.Copy,
-                defaultLabel = "OutfitStandsPlus_ApparelPolicySync_Label".Translate(syncedApparelPolicyIds.Count),
-                defaultDesc = "OutfitStandsPlus_ApparelPolicySync_Desc".Translate(),
+                defaultLabel = "OutfitStandsPlusForked_ApparelPolicySync_Label".Translate(syncedApparelPolicyIds.Count),
+                defaultDesc = "OutfitStandsPlusForked_ApparelPolicySync_Desc".Translate(),
                 action = ShowPolicyMenu
             };
         }
@@ -163,7 +163,7 @@ namespace OutfitStandsPlus.ThingComps
             List<ApparelPolicy> policies = Current.Game?.outfitDatabase?.AllOutfits;
             if (policies == null || policies.Count == 0)
             {
-                options.Add(new FloatMenuOption("OutfitStandsPlus_NoApparelPolicies".Translate(), null));
+                options.Add(new FloatMenuOption("OutfitStandsPlusForked_NoApparelPolicies".Translate(), null));
             }
             else
             {
@@ -177,7 +177,7 @@ namespace OutfitStandsPlus.ThingComps
 
             if (!syncedApparelPolicyIds.NullOrEmpty())
             {
-                options.Add(new FloatMenuOption("OutfitStandsPlus_ClearApparelPolicySync".Translate(), delegate
+                options.Add(new FloatMenuOption("OutfitStandsPlusForked_ClearApparelPolicySync".Translate(), delegate
                 {
                     syncedApparelPolicyIds.Clear();
                     lastPolicySyncTick = -1;
@@ -189,14 +189,14 @@ namespace OutfitStandsPlus.ThingComps
         }
     }
 
-    public class Dialog_OutfitStandsPlusRenameStand : Window
+    public class Dialog_OutfitStandsPlusForkedRenameStand : Window
     {
-        private readonly OutfitStandsPlusStandComp comp;
+        private readonly OutfitStandsPlusForkedStandComp comp;
         private string nameBuffer;
 
         public override Vector2 InitialSize => new Vector2(420f, 160f);
 
-        public Dialog_OutfitStandsPlusRenameStand(OutfitStandsPlusStandComp comp)
+        public Dialog_OutfitStandsPlusForkedRenameStand(OutfitStandsPlusForkedStandComp comp)
         {
             this.comp = comp;
             nameBuffer = comp.HasCustomName ? comp.DisplayName : string.Empty;
@@ -210,7 +210,7 @@ namespace OutfitStandsPlus.ThingComps
         public override void DoWindowContents(Rect inRect)
         {
             Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0f, 0f, inRect.width, 32f), "OutfitStandsPlus_RenameStand_Label".Translate());
+            Widgets.Label(new Rect(0f, 0f, inRect.width, 32f), "OutfitStandsPlusForked_RenameStand_Label".Translate());
             Text.Font = GameFont.Small;
 
             nameBuffer = Widgets.TextField(new Rect(0f, 42f, inRect.width, 32f), nameBuffer, 60);
@@ -219,7 +219,7 @@ namespace OutfitStandsPlus.ThingComps
             Rect saveRect = new Rect(inRect.width - buttonWidth, inRect.height - 35f, buttonWidth, 35f);
             Rect resetRect = new Rect(inRect.width - buttonWidth * 2f - 10f, inRect.height - 35f, buttonWidth, 35f);
 
-            if (Widgets.ButtonText(resetRect, "OutfitStandsPlus_ClearName".Translate()))
+            if (Widgets.ButtonText(resetRect, "OutfitStandsPlusForked_ClearName".Translate()))
             {
                 comp.SetCustomName(null);
                 Close();

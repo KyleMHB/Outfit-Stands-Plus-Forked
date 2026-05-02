@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using OutfitStandsPlus.Things;
+using OutfitStandsPlusForked.Things;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace OutfitStandsPlus
+namespace OutfitStandsPlusForked
 {
-    public class OutfitStandsPlusModSettings : ModSettings
+    public class OutfitStandsPlusForkedModSettings : ModSettings
     {
         public static int RareTicksPerMendDefault = 10;
         public static int EquipSpeedFactorPoweredDefault = 25;
@@ -33,13 +33,13 @@ namespace OutfitStandsPlus
             Scribe_Values.Look(ref RemoveInteractionCells, "RemoveInteractionCells", RemoveInteractionCellsDefault);
         }
     }
-    public class OutfitStandsPlusMod : Verse.Mod
+    public class OutfitStandsPlusForkedMod : Verse.Mod
     {
-        public OutfitStandsPlusModSettings Settings;
+        public OutfitStandsPlusForkedModSettings Settings;
         
-        public OutfitStandsPlusMod(ModContentPack content) : base(content)
+        public OutfitStandsPlusForkedMod(ModContentPack content) : base(content)
         {
-            Settings = GetSettings<OutfitStandsPlusModSettings>();
+            Settings = GetSettings<OutfitStandsPlusForkedModSettings>();
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
@@ -48,56 +48,56 @@ namespace OutfitStandsPlus
             listingStandard.Begin(inRect);
             
             listingStandard.Label(
-                "OutfitStandsPlus_RareTicksPerMendModSetting_Label".Translate(), 
+                "OutfitStandsPlusForked_RareTicksPerMendModSetting_Label".Translate(), 
                 -1f, 
-                "OutfitStandsPlus_RareTicksPerMendModSetting_Tooltip".Translate());
+                "OutfitStandsPlusForked_RareTicksPerMendModSetting_Tooltip".Translate());
             var buffer1 = Settings.RareTicksPerMend.ToString();
             listingStandard.IntEntry(ref Settings.RareTicksPerMend, ref buffer1, 1);
             
             listingStandard.Label(
-                "OutfitStandsPlus_EquipSpeedFactorPowered_Label".Translate(), 
+                "OutfitStandsPlusForked_EquipSpeedFactorPowered_Label".Translate(), 
                 -1f, 
-                "OutfitStandsPlus_EquipSpeedFactor_Tooltip".Translate());
+                "OutfitStandsPlusForked_EquipSpeedFactor_Tooltip".Translate());
             var buffer2 = Settings.EquipSpeedFactorPowered.ToString();
             listingStandard.TextFieldNumeric(ref Settings.EquipSpeedFactorPowered, ref buffer2);
             
             listingStandard.Label(
-                "OutfitStandsPlus_EquipSpeedFactorUnpowered_Label".Translate(), 
+                "OutfitStandsPlusForked_EquipSpeedFactorUnpowered_Label".Translate(), 
                 -1f, 
-                "OutfitStandsPlus_EquipSpeedFactor_Tooltip".Translate());
+                "OutfitStandsPlusForked_EquipSpeedFactor_Tooltip".Translate());
             var buffer3 = Settings.EquipSpeedFactorUnpowered.ToString();
             listingStandard.TextFieldNumeric(ref Settings.EquipSpeedFactorUnpowered, ref buffer3);
             
             listingStandard.GapLine();
             
             listingStandard.CheckboxLabeled(
-                "OutfitStandsPlus_RemoveInteractionCells".Translate(), 
-                ref OutfitStandsPlusModSettings.RemoveInteractionCells, 
-                "OutfitStandsPlus_RemoveInteractionCells_Tooltip".Translate());
+                "OutfitStandsPlusForked_RemoveInteractionCells".Translate(), 
+                ref OutfitStandsPlusForkedModSettings.RemoveInteractionCells, 
+                "OutfitStandsPlusForked_RemoveInteractionCells_Tooltip".Translate());
             
             listingStandard.CheckboxLabeled(
-                "OutfitStandsPlus_RemoveMechanizedStands".Translate(),
-                ref OutfitStandsPlusModSettings.RemoveMechanizedStands,
-                "OutfitStandsPlus_RemoveMechanizedStands_Tooltip".Translate());
+                "OutfitStandsPlusForked_RemoveMechanizedStands".Translate(),
+                ref OutfitStandsPlusForkedModSettings.RemoveMechanizedStands,
+                "OutfitStandsPlusForked_RemoveMechanizedStands_Tooltip".Translate());
             
             listingStandard.CheckboxLabeled(
-                "OutfitStandsPlus_RemoveMendingStands".Translate(),
-                ref OutfitStandsPlusModSettings.RemoveMendingStands,
-                "OutfitStandsPlus_RemoveMendingStands_Tooltip".Translate());
+                "OutfitStandsPlusForked_RemoveMendingStands".Translate(),
+                ref OutfitStandsPlusForkedModSettings.RemoveMendingStands,
+                "OutfitStandsPlusForked_RemoveMendingStands_Tooltip".Translate());
             
             listingStandard.GapLine();
             
-            if (listingStandard.ButtonText("OutfitStandsPlus_RestoreDefaultSettings_Label".Translate()))
+            if (listingStandard.ButtonText("OutfitStandsPlusForked_RestoreDefaultSettings_Label".Translate()))
             {
-                Settings.RareTicksPerMend = OutfitStandsPlusModSettings.RareTicksPerMendDefault;
-                Settings.EquipSpeedFactorPowered = OutfitStandsPlusModSettings.EquipSpeedFactorPoweredDefault;
-                Settings.EquipSpeedFactorUnpowered = OutfitStandsPlusModSettings.EquipSpeedFactorUnpoweredDefault;
-                OutfitStandsPlusModSettings.RemoveMechanizedStands =
-                    OutfitStandsPlusModSettings.RemoveMechanizedStandsDefault;
-                OutfitStandsPlusModSettings.RemoveMendingStands =
-                    OutfitStandsPlusModSettings.RemoveMendingStandsDefault;
-                OutfitStandsPlusModSettings.RemoveInteractionCells =
-                    OutfitStandsPlusModSettings.RemoveInteractionCellsDefault;
+                Settings.RareTicksPerMend = OutfitStandsPlusForkedModSettings.RareTicksPerMendDefault;
+                Settings.EquipSpeedFactorPowered = OutfitStandsPlusForkedModSettings.EquipSpeedFactorPoweredDefault;
+                Settings.EquipSpeedFactorUnpowered = OutfitStandsPlusForkedModSettings.EquipSpeedFactorUnpoweredDefault;
+                OutfitStandsPlusForkedModSettings.RemoveMechanizedStands =
+                    OutfitStandsPlusForkedModSettings.RemoveMechanizedStandsDefault;
+                OutfitStandsPlusForkedModSettings.RemoveMendingStands =
+                    OutfitStandsPlusForkedModSettings.RemoveMendingStandsDefault;
+                OutfitStandsPlusForkedModSettings.RemoveInteractionCells =
+                    OutfitStandsPlusForkedModSettings.RemoveInteractionCellsDefault;
             }
             listingStandard.End();
             base.DoSettingsWindowContents(inRect);
@@ -105,7 +105,7 @@ namespace OutfitStandsPlus
         
         public override string SettingsCategory()
         {
-            return "OutfitStandsPlus_ModName".Translate();
+            return "OutfitStandsPlusForked_ModName".Translate();
         }
     }
 
@@ -114,20 +114,20 @@ namespace OutfitStandsPlus
     {
         static OutfitStandsRemovalUtility()
         {
-            if (OutfitStandsPlusModSettings.RemoveMechanizedStands)
+            if (OutfitStandsPlusForkedModSettings.RemoveMechanizedStands)
             {
                 HideThing(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MechanizedOutfitStand"));
                 HideThing(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MechanizedKidOutfitStand"));
                 HideResearch(DefDatabase<ResearchProjectDef>.GetNamed("OutfitStandsPlus_MechanizedOutfitStandsResearch"));
             }
-            if (OutfitStandsPlusModSettings.RemoveMendingStands)
+            if (OutfitStandsPlusForkedModSettings.RemoveMendingStands)
             {
                 HideThing(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MendingOutfitStand"));
                 HideThing(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MendingKidOutfitStand"));
                 HideResearch(DefDatabase<ResearchProjectDef>.GetNamed("OutfitStandsPlus_MendingOutfitStandsResearch"));
             }
 
-            if (OutfitStandsPlusModSettings.RemoveInteractionCells)
+            if (OutfitStandsPlusForkedModSettings.RemoveInteractionCells)
             {
                 RemoveInteractionSpot(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MechanizedOutfitStand"));
                 RemoveInteractionSpot(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MechanizedKidOutfitStand"));

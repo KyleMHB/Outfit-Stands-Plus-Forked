@@ -1,27 +1,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using OutfitStandsPlus.DefOfs;
-using OutfitStandsPlus.ThingComps;
+using OutfitStandsPlusForked.DefOfs;
+using OutfitStandsPlusForked.ThingComps;
 using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace OutfitStandsPlus.Commands
+namespace OutfitStandsPlusForked.Commands
 {
-    public class OutfitStandsPlusUseGroupCommand : Command
+    public class OutfitStandsPlusForkedUseGroupCommand : Command
     {
         private readonly List<Pawn> pawns;
         private static readonly MethodInfo SetAllowHaulingMethod =
             typeof(Building_OutfitStand).GetMethod("SetAllowHauling", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        public OutfitStandsPlusUseGroupCommand(IEnumerable<Pawn> selectedPawns)
+        public OutfitStandsPlusForkedUseGroupCommand(IEnumerable<Pawn> selectedPawns)
         {
             pawns = selectedPawns.Where(pawn => pawn != null).Distinct().ToList();
             icon = ContentFinder<Texture2D>.Get("UI/Commands/SwapOutfits");
-            defaultLabel = "OutfitStandsPlus_GroupUseAssignedStands_Label".Translate();
-            defaultDesc = "OutfitStandsPlus_GroupUseAssignedStands_Desc".Translate();
+            defaultLabel = "OutfitStandsPlusForked_GroupUseAssignedStands_Label".Translate();
+            defaultDesc = "OutfitStandsPlusForked_GroupUseAssignedStands_Desc".Translate();
         }
 
         public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
@@ -32,9 +32,9 @@ namespace OutfitStandsPlus.Commands
                 {
                     SetSelectedPawnMode(JobDefOf.UseOutfitStand);
                 });
-                yield return new FloatMenuOption("OutfitStandsPlus_ReturnToStandGizmoLabel".Translate().CapitalizeFirst(), delegate
+                yield return new FloatMenuOption("OutfitStandsPlusForked_ReturnToStandGizmoLabel".Translate().CapitalizeFirst(), delegate
                 {
-                    SetSelectedPawnMode(OutfitStandsPlusJobDefOf.OutfitStandsPlus_JobReturnToStand);
+                    SetSelectedPawnMode(OutfitStandsPlusForkedJobDefOf.OutfitStandsPlus_JobReturnToStand);
                 });
             }
         }
@@ -58,11 +58,11 @@ namespace OutfitStandsPlus.Commands
 
             if (started == 0)
             {
-                Messages.Message("OutfitStandsPlus_GroupUseAssignedStands_None".Translate(), MessageTypeDefOf.RejectInput, historical: false);
+                Messages.Message("OutfitStandsPlusForked_GroupUseAssignedStands_None".Translate(), MessageTypeDefOf.RejectInput, historical: false);
             }
             else if (skipped > 0)
             {
-                Messages.Message("OutfitStandsPlus_GroupUseAssignedStands_Skipped".Translate(started, skipped), MessageTypeDefOf.NeutralEvent, historical: false);
+                Messages.Message("OutfitStandsPlusForked_GroupUseAssignedStands_Skipped".Translate(started, skipped), MessageTypeDefOf.NeutralEvent, historical: false);
             }
         }
 
@@ -70,7 +70,7 @@ namespace OutfitStandsPlus.Commands
         {
             foreach (Pawn pawn in Find.Selector.SelectedObjects.OfType<Pawn>())
             {
-                pawn.GetComp<OutfitStandsPlusUseCommandsComp>()?.SetCurrentOutfitStandJobDef(jobDef);
+                pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>()?.SetCurrentOutfitStandJobDef(jobDef);
             }
         }
 
@@ -86,8 +86,8 @@ namespace OutfitStandsPlus.Commands
                 SetAllowHaulingMethod.Invoke(stand, new object[] { false });
             }
 
-            stand.GetComp<OutfitStandsPlusStandComp>()?.SyncApparelPolicyFilter();
-            var comp = pawn.GetComp<OutfitStandsPlusUseCommandsComp>();
+            stand.GetComp<OutfitStandsPlusForkedStandComp>()?.SyncApparelPolicyFilter();
+            var comp = pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>();
             JobDef selectedJobDef = comp?.CurrentOutfitStandJobDef ?? JobDefOf.UseOutfitStand;
             Job job = JobMaker.MakeJob(selectedJobDef, stand);
             job.playerForced = true;
@@ -104,7 +104,7 @@ namespace OutfitStandsPlus.Commands
 
             foreach (Building_OutfitStand stand in Find.CurrentMap.listerBuildings.AllBuildingsColonistOfClass<Building_OutfitStand>())
             {
-                var assignmentComp = stand.GetComp<CompAssignableToPawn_OutfitStandsPlusBase>();
+                var assignmentComp = stand.GetComp<CompAssignableToPawn_OutfitStandsPlusForkedBase>();
                 if (assignmentComp != null && assignmentComp.AssignedPawns.Contains(pawn))
                 {
                     return stand;

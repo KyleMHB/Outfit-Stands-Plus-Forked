@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using OutfitStandsPlus.ThingComps;
+using OutfitStandsPlusForked.ThingComps;
 using RimWorld;
 using Verse;
 
-namespace OutfitStandsPlus.Utility
+namespace OutfitStandsPlusForked.Utility
 {
     public static class OutfitStandTransferUtility
     {
@@ -15,7 +15,7 @@ namespace OutfitStandsPlus.Utility
                 return;
             }
 
-            stand.GetComp<OutfitStandsPlusStandComp>()?.SyncApparelPolicyFilter();
+            stand.GetComp<OutfitStandsPlusForkedStandComp>()?.SyncApparelPolicyFilter();
             if (OutfitStandCompatibilityUtility.HasExternalGearFlowQueued(pawn))
             {
                 OutfitStandCompatibilityUtility.LogExternalGearFlowOnce(pawn, stand);
@@ -63,7 +63,7 @@ namespace OutfitStandsPlus.Utility
 
             TransferApparel(pawn, stand, pawnToStand, standToPawn);
             SwapWeapons(pawn, stand);
-            pawn.GetComp<OutfitStandsPlusUseCommandsComp>().CurrentOutfitStandJobDef = DefOfs.OutfitStandsPlusJobDefOf.OutfitStandsPlus_JobReturnToStand;
+            pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>().CurrentOutfitStandJobDef = DefOfs.OutfitStandsPlusForkedJobDefOf.OutfitStandsPlus_JobReturnToStand;
         }
 
         public static void ReturnToStand(Pawn pawn, Building_OutfitStand stand)
@@ -73,7 +73,7 @@ namespace OutfitStandsPlus.Utility
                 return;
             }
 
-            stand.GetComp<OutfitStandsPlusStandComp>()?.SyncApparelPolicyFilter();
+            stand.GetComp<OutfitStandsPlusForkedStandComp>()?.SyncApparelPolicyFilter();
             if (OutfitStandCompatibilityUtility.HasExternalGearFlowQueued(pawn))
             {
                 OutfitStandCompatibilityUtility.LogExternalGearFlowOnce(pawn, stand);
@@ -127,7 +127,7 @@ namespace OutfitStandsPlus.Utility
 
             TransferApparel(pawn, stand, pawnToStand, standToPawn);
             ReturnWeaponToStand(pawn, stand);
-            pawn.GetComp<OutfitStandsPlusUseCommandsComp>().CurrentOutfitStandJobDef = JobDefOf.UseOutfitStand;
+            pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>().CurrentOutfitStandJobDef = JobDefOf.UseOutfitStand;
         }
 
         private static bool ValidatePawnAndStand(Pawn pawn, Building_OutfitStand stand)
@@ -285,7 +285,7 @@ namespace OutfitStandsPlus.Utility
 
         private static void LogSkip(Pawn pawn, Building_OutfitStand stand, Thing item, string reason)
         {
-            Log.Warning($"[Outfit Stands Plus] Skipped transfer. Pawn={pawn?.LabelShort ?? "null"}, Stand={stand?.LabelCap ?? "null"}, Item={item?.LabelCap ?? "null"}, Reason={reason}");
+            Log.Warning($"[Outfit Stands Plus Forked] Skipped transfer. Pawn={pawn?.LabelShort ?? "null"}, Stand={stand?.LabelCap ?? "null"}, Item={item?.LabelCap ?? "null"}, Reason={reason}");
         }
     }
 }

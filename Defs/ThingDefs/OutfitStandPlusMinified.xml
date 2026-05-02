@@ -2,6 +2,6 @@
 <Defs>
     <ThingDef ParentName="MinifiedThing">
         <defName>OutfitStandPlusMinified</defName>
-        <thingClass>OutfitStandsPlus.Things.OutfitStandPlusMinified</thingClass>
+        <thingClass>OutfitStandsPlusForked.Things.OutfitStandPlusForkedMinified</thingClass>
     </ThingDef>
 </Defs>

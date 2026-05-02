@@ -6,20 +6,20 @@
             <xpath>/Defs/ThingDef[defName="Building_OutfitStand"]</xpath>
             <value>
                 <comps>
-                    <li Class="OutfitStandsPlus.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusAdult">
+                    <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedAdult">
                     </li>
-                    <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusMainComp"></li>
-                    <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusStandComp"></li>
+                    <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedMainComp"></li>
+                    <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp"></li>
                 </comps>
             </value>
         </nomatch>
         <match Class="PatchOperationAdd">
             <xpath>/Defs/ThingDef[defName="Building_OutfitStand"]/comps</xpath>
             <value>
-                <li Class="OutfitStandsPlus.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusAdult">
+                <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedAdult">
                 </li>
-                <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusMainComp"></li>
-                <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusStandComp"></li>
+                <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedMainComp"></li>
+                <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp"></li>
             </value>
         </match>
     </Operation>
@@ -29,28 +29,28 @@
             <xpath>/Defs/ThingDef[defName="Building_KidOutfitStand"]</xpath>
             <value>
                 <comps>
-                    <li Class="OutfitStandsPlus.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusKid">
+                    <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedKid">
                     </li>
-                    <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusMainComp"></li>
-                    <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusStandComp"></li>
+                    <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedMainComp"></li>
+                    <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp"></li>
                 </comps>
             </value>
         </nomatch>
         <match Class="PatchOperationAdd">
             <xpath>/Defs/ThingDef[defName="Building_KidOutfitStand"]/comps</xpath>
             <value>
-                <li Class="OutfitStandsPlus.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusKid">
+                <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedKid">
                 </li>
-                <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusMainComp"></li>
-                <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusStandComp"></li>
+                <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedMainComp"></li>
+                <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp"></li>
             </value>
         </match>
     </Operation>
     <Operation Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[@Name="BasePawn"]/comps</xpath>
         <value>
-            <li Class="OutfitStandsPlus.ThingComps.CompProperties_OutfitStandsPlusUseCommandsComp">
-            </li>
+        <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedUseCommandsComp">
+        </li>
         </value>
     </Operation>
     <Operation Class="PatchOperationConditional">

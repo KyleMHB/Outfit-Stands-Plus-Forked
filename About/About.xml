@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-    <packageId>khamenman.OutfitStandsPLus</packageId>
-    <name>Outfit Stands Plus</name>
+    <packageId>khamenman.OutfitStandsPlusForked</packageId>
+    <name>Outfit Stands Plus Forked</name>
     <author>KyleMHB</author>
     <description>Improves outfit stand assignment and gear flow with safer apparel handling.</description>
     <supportedVersions>

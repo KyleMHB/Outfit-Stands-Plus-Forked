@@ -3,9 +3,9 @@ using System.Linq;
 using RimWorld;
 using Verse;
 
-namespace OutfitStandsPlus.ThingComps
+namespace OutfitStandsPlusForked.ThingComps
 {
-    public class CompAssignableToPawn_OutfitStandsPlusBase: CompAssignableToPawn
+    public class CompAssignableToPawn_OutfitStandsPlusForkedBase: CompAssignableToPawn
     {
         private static bool loggedTrimmedAssignments;
 
@@ -49,7 +49,7 @@ namespace OutfitStandsPlus.ThingComps
             var stands = Find.CurrentMap.listerBuildings.AllBuildingsColonistOfClass<Building_OutfitStand>();
             foreach (var stand in stands)
             {
-                var c = stand.GetComp<CompAssignableToPawn_OutfitStandsPlusBase>();
+                var c = stand.GetComp<CompAssignableToPawn_OutfitStandsPlusForkedBase>();
                 if (c == null)
                 {
                     continue;
@@ -81,7 +81,7 @@ namespace OutfitStandsPlus.ThingComps
             var stands = Find.CurrentMap.listerBuildings.AllBuildingsColonistOfClass<Building_OutfitStand>();
             foreach (var stand in stands)
             {
-                var c = stand.GetComp<CompAssignableToPawn_OutfitStandsPlusBase>();
+                var c = stand.GetComp<CompAssignableToPawn_OutfitStandsPlusForkedBase>();
                 if (c != null && c.AssignedPawns.Contains(pawn))
                 {
                     return true;
@@ -102,7 +102,7 @@ namespace OutfitStandsPlus.ThingComps
             if (!loggedTrimmedAssignments)
             {
                 loggedTrimmedAssignments = true;
-                Log.Warning("[Outfit Stands Plus] Trimmed legacy armor stand assignments to enforce one pawn per stand.");
+                Log.Warning("[Outfit Stands Plus Forked] Trimmed legacy armor stand assignments to enforce one pawn per stand.");
             }
         }
     }

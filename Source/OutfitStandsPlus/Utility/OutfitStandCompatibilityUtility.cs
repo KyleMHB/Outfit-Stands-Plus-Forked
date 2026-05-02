@@ -3,7 +3,7 @@ using System.Linq;
 using Verse;
 using Verse.AI;
 
-namespace OutfitStandsPlus.Utility
+namespace OutfitStandsPlusForked.Utility
 {
     public static class OutfitStandCompatibilityUtility
     {
@@ -50,7 +50,7 @@ namespace OutfitStandsPlus.Utility
             }
 
             loggedGearFlow = true;
-            Log.Warning($"[Outfit Stands Plus] Detected external gear flow while using stand. Pawn={pawn?.LabelShort ?? "null"}, Stand={stand?.LabelCap ?? "null"}. Transfers will be revalidated to avoid stale apparel moves.");
+            Log.Warning($"[Outfit Stands Plus Forked] Detected external gear flow while using stand. Pawn={pawn?.LabelShort ?? "null"}, Stand={stand?.LabelCap ?? "null"}. Transfers will be revalidated to avoid stale apparel moves.");
         }
     }
 }

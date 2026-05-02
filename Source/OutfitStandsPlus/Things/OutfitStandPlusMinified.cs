@@ -3,15 +3,15 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace OutfitStandsPlus.Things
+namespace OutfitStandsPlusForked.Things
 {
-    public class OutfitStandPlusMinified : MinifiedThing
+    public class OutfitStandPlusForkedMinified : MinifiedThing
     {
         private static bool loggedMissingInnerThing;
 
         private bool HasInnerThing => InnerThing != null;
 
-        public override string LabelNoCount => HasInnerThing ? base.LabelNoCount : "OutfitStandsPlus_InvalidMinifiedStandLabel".Translate().ToString();
+        public override string LabelNoCount => HasInnerThing ? base.LabelNoCount : "OutfitStandsPlusForked_InvalidMinifiedStandLabel".Translate().ToString();
 
         public override Graphic Graphic => HasInnerThing ? base.Graphic : DefaultGraphic;
 
@@ -46,7 +46,7 @@ namespace OutfitStandsPlus.Things
 
         public override string GetInspectString()
         {
-            return HasInnerThing ? base.GetInspectString() : "OutfitStandsPlus_InvalidMinifiedStandInspect".Translate().ToString();
+            return HasInnerThing ? base.GetInspectString() : "OutfitStandsPlusForked_InvalidMinifiedStandInspect".Translate().ToString();
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
@@ -86,7 +86,7 @@ namespace OutfitStandsPlus.Things
             }
 
             loggedMissingInnerThing = true;
-            Log.Warning("[Outfit Stands Plus] OutfitStandPlusMinified was spawned without an inner stand. This is usually caused by dev-spawning the internal minified crate def directly.");
+            Log.Warning("[Outfit Stands Plus Forked] OutfitStandPlusForkedMinified was spawned without an inner stand. This is usually caused by dev-spawning the internal minified crate def directly.");
         }
     }
 }

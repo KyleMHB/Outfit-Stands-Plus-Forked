@@ -2,6 +2,10 @@
 
 ## 2026-05-02
 
+### Changed
+
+- Renamed the mod branding, namespaces, assembly, and package metadata to Outfit Stands Plus Forked while keeping save-linked defNames and Scribe keys stable.
+
 ### Added
 
 - Added a README and Steam Workshop description for the documentation refresh.
@@ -13,12 +17,12 @@
 - Added optional runtime compatibility handling for Defensive Positions Forked (`GonDragon.DefensivePositions`).
 - Added one shared multi-pawn `Use assigned armor stands` gizmo for selected pawn groups.
 - Added right-click group gizmo options to set selected eligible pawns to Swap or Return mode.
-- Added invalid minified stand fallback text for dev-spawned `OutfitStandPlusMinified` instances.
+- Added invalid minified stand fallback text for dev-spawned `OutfitStandPlusForkedMinified` instances.
 
 ### Changed
 
 - Moved the source repository workflow to `E:\Coding\Rimworld\Outfit Stands Plus Forked`, with the Steam RimWorld mod folder treated as a runtime deploy target.
-- Stopped tracking generated runtime assemblies in Git; deploy now produces `Assemblies/OutfitStandsPlus.dll`.
+- Stopped tracking generated runtime assemblies in Git; deploy now produces `Assemblies/OutfitStandsPlusForked.dll`.
 - Removed the broken missing `postbuild.ps1` project hook.
 - Reworked stand gear transfers to use transactional validation before moving apparel or weapons.
 - Recomputed transfer plans at execution time so stale apparel changes from other mods are skipped safely.
@@ -38,11 +42,11 @@
 - Fixed stale transfer plans when other mods change pawn apparel during a stand job.
 - Fixed stand jobs starting while Gear Up And Go or Defensive Positions Forked owns the pawn's current gear or movement flow.
 - Fixed compatibility logging so missing optional mods or failed reflection disable the integration without hard errors.
-- Fixed dev-spawned `OutfitStandPlusMinified` null `InnerThing` crashes in label, graphic, print, draw, and inspect paths.
+- Fixed dev-spawned `OutfitStandPlusForkedMinified` null `InnerThing` crashes in label, graphic, print, draw, and inspect paths.
 - Fixed ineffective max assignment override by setting the assignable comp property count directly.
 
 ### Verified
 
 - Built `Source/OutfitStandsPlus/OutfitStandsPlus.csproj` in Release with `0` warnings and `0` errors.
 - Verified XML parses after keyed translation updates.
-- Confirmed the compiled DLL was deployed to `Assemblies/OutfitStandsPlus.dll`.
+- Confirmed the compiled DLL was deployed to `Assemblies/OutfitStandsPlusForked.dll`.

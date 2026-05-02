@@ -8,6 +8,6 @@ $projectPath = Join-Path $repoRoot "Source\OutfitStandsPlus\OutfitStandsPlus.csp
 $targetRoot = Get-RimWorldModTargetPath -ModName "Outfit Stands Plus Forked"
 
 Invoke-RimWorldDotNetBuild -ProjectPath $projectPath -Configuration "Release" -DotNetHome (Join-Path $repoRoot ".dotnet")
-Sync-RimWorldModFolders -SourceRoot $repoRoot -TargetRoot $targetRoot -Folders @("About", "Defs", "Languages", "Patches") -RemoveFiles @("Assemblies\OutfitStandsPlus.pdb")
+Sync-RimWorldModFolders -SourceRoot $repoRoot -TargetRoot $targetRoot -Folders @("About", "Defs", "Languages", "Patches") -RemoveFiles @("Assemblies\OutfitStandsPlus.dll", "Assemblies\OutfitStandsPlus.pdb")
 
 Write-Host "Deployed Outfit Stands Plus Forked to $targetRoot"

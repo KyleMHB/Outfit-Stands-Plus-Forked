@@ -2,7 +2,7 @@
 <Defs>
     <JobDef>
         <defName>OutfitStandsPlus_JobReturnToStand</defName>
-        <driverClass>OutfitStandsPlus.Jobs.JobDriver_OutfitStandsPlusReturnToStand</driverClass>
+        <driverClass>OutfitStandsPlusForked.Jobs.JobDriver_OutfitStandsPlusForkedReturnToStand</driverClass>
         <reportString>Returning outfit to stand.</reportString>
         <suspendable>false</suspendable>
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>

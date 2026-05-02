@@ -7,12 +7,12 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using OutfitStandsPlus.DefOfs;
-using OutfitStandsPlus.ThingComps;
-using OutfitStandsPlus.Utility;
+using OutfitStandsPlusForked.DefOfs;
+using OutfitStandsPlusForked.ThingComps;
+using OutfitStandsPlusForked.Utility;
 using Verse.AI;
 
-namespace OutfitStandsPlus.HarmonyPatches
+namespace OutfitStandsPlusForked.HarmonyPatches
 {
     [HarmonyPatch(typeof(Building_OutfitStand), nameof(Building_OutfitStand.GetInspectString))]
     public class OutfitStandGetInspectStringPatch
@@ -26,13 +26,13 @@ namespace OutfitStandsPlus.HarmonyPatches
             }
             if (__instance.Faction == Faction.OfPlayer)
             {
-                var c = __instance.GetComp<CompAssignableToPawn_OutfitStandsPlusBase>();
+                var c = __instance.GetComp<CompAssignableToPawn_OutfitStandsPlusForkedBase>();
                 Pawn owner = c != null && c.AssignedPawns.Any() ? c.AssignedPawns.First() : null;
                 var owner_string = owner != null ? owner.Label : "Nobody".Translate().ToString();
-                var standComp = __instance.GetComp<OutfitStandsPlusStandComp>();
+                var standComp = __instance.GetComp<OutfitStandsPlusForkedStandComp>();
                 if (standComp != null && (standComp.HasCustomName || standComp.HasAssignedPawnName))
                 {
-                    stringBuilder.AppendLine("OutfitStandsPlus_StandName".Translate() + ": " + standComp.DisplayName);
+                    stringBuilder.AppendLine("OutfitStandsPlusForked_StandName".Translate() + ": " + standComp.DisplayName);
                 }
                 stringBuilder.AppendLine("Owner".Translate() + ": " + owner_string);    
             }
@@ -51,13 +51,13 @@ namespace OutfitStandsPlus.HarmonyPatches
                 yield return value;
                 if (pos == 0)
                 {
-                    var standComp = __instance.GetComp<OutfitStandsPlusStandComp>();
+                    var standComp = __instance.GetComp<OutfitStandsPlusForkedStandComp>();
                     string label = standComp != null && (standComp.HasCustomName || standComp.HasAssignedPawnName)
-                        ? "OutfitStandsPlus_ReturnToNamedStandLabel".Translate(standComp.DisplayName).CapitalizeFirst()
-                        : "OutfitStandsPlus_ReturnToStandLabel".Translate().CapitalizeFirst();
+                        ? "OutfitStandsPlusForked_ReturnToNamedStandLabel".Translate(standComp.DisplayName).CapitalizeFirst()
+                        : "OutfitStandsPlusForked_ReturnToStandLabel".Translate().CapitalizeFirst();
                     yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, (Action) (() =>
                     {
-                        Job job = JobMaker.MakeJob(OutfitStandsPlusJobDefOf.OutfitStandsPlus_JobReturnToStand, (LocalTargetInfo) (Thing) __instance);
+                        Job job = JobMaker.MakeJob(OutfitStandsPlusForkedJobDefOf.OutfitStandsPlus_JobReturnToStand, (LocalTargetInfo) (Thing) __instance);
                         job.playerForced = true;
                         selPawn.jobs.TryTakeOrderedJob(job);
                     })), selPawn, (LocalTargetInfo) (Thing) __instance);    
@@ -86,8 +86,8 @@ namespace OutfitStandsPlus.HarmonyPatches
         static void Postfix(JobDriver_UseOutfitStand __instance)
         {
             var outfitStand = (Building_OutfitStand) __instance.job.targetA.Thing;
-            outfitStand.GetComp<OutfitStandsPlusStandComp>()?.SyncApparelPolicyFilter();
-            var comp = outfitStand.GetComp<OutfitStandsPlusMainComp>();
+            outfitStand.GetComp<OutfitStandsPlusForkedStandComp>()?.SyncApparelPolicyFilter();
+            var comp = outfitStand.GetComp<OutfitStandsPlusForkedMainComp>();
             if (comp is null)
             {
                 return;
@@ -97,7 +97,7 @@ namespace OutfitStandsPlus.HarmonyPatches
                 System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             if (durationField == null)
             {
-                Log.Warning("[Outfit Stands Plus] Could not find JobDriver_UseOutfitStand.duration; equip speed factor skipped.");
+                Log.Warning("[Outfit Stands Plus Forked] Could not find JobDriver_UseOutfitStand.duration; equip speed factor skipped.");
                 return;
             }
             var duration = (int) durationField.GetValue(__instance);
@@ -117,8 +117,8 @@ namespace OutfitStandsPlus.HarmonyPatches
         }
         static bool Prefix(ref bool __result, Building_OutfitStand __instance)
         {
-            __instance.GetComp<OutfitStandsPlusStandComp>()?.SyncApparelPolicyFilter();
-            var comp = __instance.GetComp<OutfitStandsPlusMainComp>();
+            __instance.GetComp<OutfitStandsPlusForkedStandComp>()?.SyncApparelPolicyFilter();
+            var comp = __instance.GetComp<OutfitStandsPlusForkedMainComp>();
             if (comp != null && !comp.AllowAddingItems)
             {
                 __result = false;
@@ -134,7 +134,7 @@ namespace OutfitStandsPlus.HarmonyPatches
     {
         static Startup()
         {
-            var harmony = new Harmony("khamenman.OutfitStandsPlus");
+            var harmony = new Harmony("khamenman.OutfitStandsPlusForked");
             harmony.PatchAll();
         }
     }

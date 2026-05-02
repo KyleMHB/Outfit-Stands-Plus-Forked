@@ -2,10 +2,10 @@
 using Verse;
 
 
-namespace OutfitStandsPlus.DefOfs
+namespace OutfitStandsPlusForked.DefOfs
 {
     [DefOf]
-    public class OutfitStandsPlusJobDefOf
+    public class OutfitStandsPlusForkedJobDefOf
     {
         public static JobDef OutfitStandsPlus_JobReturnToStand;
     }

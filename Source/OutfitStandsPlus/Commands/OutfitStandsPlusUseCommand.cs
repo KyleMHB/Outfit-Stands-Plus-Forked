@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using OutfitStandsPlus.DefOfs;
-using OutfitStandsPlus.ThingComps;
+using OutfitStandsPlusForked.DefOfs;
+using OutfitStandsPlusForked.ThingComps;
 using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace OutfitStandsPlus.Commands
+namespace OutfitStandsPlusForked.Commands
 {
-    public class OutfitStandsPlusUseCommand: Command
+    public class OutfitStandsPlusForkedUseCommand: Command
     {
         public Building_OutfitStand OutfitStand;
         public Pawn Pawn;
 
-        public OutfitStandsPlusUseCommand(Building_OutfitStand outfitStand, Pawn pawn)
+        public OutfitStandsPlusForkedUseCommand(Building_OutfitStand outfitStand, Pawn pawn)
         {
             OutfitStand = outfitStand;
             Pawn = pawn;
@@ -27,12 +27,12 @@ namespace OutfitStandsPlus.Commands
         {
             get
             {
-                var selectedJobDef = Pawn.GetComp<OutfitStandsPlusUseCommandsComp>().CurrentOutfitStandJobDef;
-                if (selectedJobDef == OutfitStandsPlusJobDefOf.OutfitStandsPlus_JobReturnToStand)
+                var selectedJobDef = Pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>().CurrentOutfitStandJobDef;
+                if (selectedJobDef == OutfitStandsPlusForkedJobDefOf.OutfitStandsPlus_JobReturnToStand)
                 {
-                    return "OutfitStandsPlus_ReturnToNamedStandGizmoLabel".Translate(DisplayStandName).CapitalizeFirst();
+                    return "OutfitStandsPlusForked_ReturnToNamedStandGizmoLabel".Translate(DisplayStandName).CapitalizeFirst();
                 }
-                return "OutfitStandsPlus_SwapNamedStandGizmoLabel".Translate(DisplayStandName).CapitalizeFirst();
+                return "OutfitStandsPlusForked_SwapNamedStandGizmoLabel".Translate(DisplayStandName).CapitalizeFirst();
             }
         }
 
@@ -40,16 +40,16 @@ namespace OutfitStandsPlus.Commands
         {
             get
             {
-                var selectedJobDef = Pawn.GetComp<OutfitStandsPlusUseCommandsComp>().CurrentOutfitStandJobDef;
-                if (selectedJobDef == OutfitStandsPlusJobDefOf.OutfitStandsPlus_JobReturnToStand)
+                var selectedJobDef = Pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>().CurrentOutfitStandJobDef;
+                if (selectedJobDef == OutfitStandsPlusForkedJobDefOf.OutfitStandsPlus_JobReturnToStand)
                 {
-                    return "OutfitStandsPlus_ReturnToNamedStandGizmoDescription".Translate(DisplayStandName);
+                    return "OutfitStandsPlusForked_ReturnToNamedStandGizmoDescription".Translate(DisplayStandName);
                 }
-                return "OutfitStandsPlus_SwapNamedStandGizmoDescription".Translate(DisplayStandName);
+                return "OutfitStandsPlusForked_SwapNamedStandGizmoDescription".Translate(DisplayStandName);
             }
         }
 
-        private string DisplayStandName => OutfitStand.GetComp<OutfitStandsPlusStandComp>()?.DisplayName ?? OutfitStand.LabelCap;
+        private string DisplayStandName => OutfitStand.GetComp<OutfitStandsPlusForkedStandComp>()?.DisplayName ?? OutfitStand.LabelCap;
 
         public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
         {
@@ -59,12 +59,12 @@ namespace OutfitStandsPlus.Commands
                 yield return new FloatMenuOption("SwapOutfitGizmo".Translate().CapitalizeFirst(),
                     delegate
                     {
-                        Pawn.GetComp<OutfitStandsPlusUseCommandsComp>().CurrentOutfitStandJobDef = JobDefOf.UseOutfitStand;
+                        Pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>().CurrentOutfitStandJobDef = JobDefOf.UseOutfitStand;
                     });
-                yield return new FloatMenuOption("OutfitStandsPlus_ReturnToStandGizmoLabel".Translate().CapitalizeFirst(),
+                yield return new FloatMenuOption("OutfitStandsPlusForked_ReturnToStandGizmoLabel".Translate().CapitalizeFirst(),
                     delegate
                     {
-                        Pawn.GetComp<OutfitStandsPlusUseCommandsComp>().CurrentOutfitStandJobDef = OutfitStandsPlusJobDefOf.OutfitStandsPlus_JobReturnToStand;
+                        Pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>().CurrentOutfitStandJobDef = OutfitStandsPlusForkedJobDefOf.OutfitStandsPlus_JobReturnToStand;
                     });
             }
         }
@@ -89,11 +89,11 @@ namespace OutfitStandsPlus.Commands
                 }
                 else
                 {
-                    Log.Warning("[Outfit Stands Plus] Could not find Building_OutfitStand.SetAllowHauling; continuing without changing hauling state.");
+                    Log.Warning("[Outfit Stands Plus Forked] Could not find Building_OutfitStand.SetAllowHauling; continuing without changing hauling state.");
                 }
                 
-                OutfitStand.GetComp<OutfitStandsPlusStandComp>()?.SyncApparelPolicyFilter();
-                var selectedJobDef = Pawn.GetComp<OutfitStandsPlusUseCommandsComp>().CurrentOutfitStandJobDef;
+                OutfitStand.GetComp<OutfitStandsPlusForkedStandComp>()?.SyncApparelPolicyFilter();
+                var selectedJobDef = Pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>().CurrentOutfitStandJobDef;
                 Job job = JobMaker.MakeJob(selectedJobDef, OutfitStand);
                 job.playerForced = true;
                 Pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);

@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using OutfitStandsPlus.Commands;
+using OutfitStandsPlusForked.Commands;
 using RimWorld;
 using Verse;
 
-namespace OutfitStandsPlus.ThingComps
+namespace OutfitStandsPlusForked.ThingComps
 {
-    public class CompProperties_OutfitStandsPlusUseCommandsComp : CompProperties
+    public class CompProperties_OutfitStandsPlusForkedUseCommandsComp : CompProperties
     {
-        public CompProperties_OutfitStandsPlusUseCommandsComp()
+        public CompProperties_OutfitStandsPlusForkedUseCommandsComp()
         {
-            this.compClass = typeof(OutfitStandsPlusUseCommandsComp);
+            this.compClass = typeof(OutfitStandsPlusForkedUseCommandsComp);
         }
 
-        public CompProperties_OutfitStandsPlusUseCommandsComp(Type compClass)
+        public CompProperties_OutfitStandsPlusForkedUseCommandsComp(Type compClass)
         {
             this.compClass = compClass;
         }
     }
-    public class OutfitStandsPlusUseCommandsComp: ThingComp
+    public class OutfitStandsPlusForkedUseCommandsComp: ThingComp
     {
         private JobDef _currentOutfitStandJobDef;
 
@@ -48,7 +48,7 @@ namespace OutfitStandsPlus.ThingComps
             {
                 if (selectedPawns.FirstOrDefault() == pawn)
                 {
-                    yield return new OutfitStandsPlusUseGroupCommand(selectedPawns);
+                    yield return new OutfitStandsPlusForkedUseGroupCommand(selectedPawns);
                 }
                 yield break;
             }
@@ -56,9 +56,9 @@ namespace OutfitStandsPlus.ThingComps
             var stands = Find.CurrentMap.listerBuildings.AllBuildingsColonistOfClass<Building_OutfitStand>();
             foreach (var stand in stands)
             {
-                var c = stand.GetComp<CompAssignableToPawn_OutfitStandsPlusBase>();
+                var c = stand.GetComp<CompAssignableToPawn_OutfitStandsPlusForkedBase>();
                 if (c == null || !c.AssignedPawns.Contains(pawn)) { continue; }
-                yield return new OutfitStandsPlusUseCommand(stand, pawn);
+                yield return new OutfitStandsPlusForkedUseCommand(stand, pawn);
             }
         }
 

@@ -55,7 +55,7 @@ Build the project from the repository root:
 dotnet build .\Source\OutfitStandsPlus\OutfitStandsPlus.csproj -c Release
 ```
 
-The project outputs to `Assemblies\OutfitStandsPlus.dll`.
+The project outputs to `Assemblies\OutfitStandsPlusForked.dll`.
 
 ## Testing and Validation
 

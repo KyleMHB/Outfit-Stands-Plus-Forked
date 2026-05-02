@@ -3,7 +3,7 @@ using System.Linq;
 using RimWorld;
 using Verse;
 
-namespace OutfitStandsPlus.Things
+namespace OutfitStandsPlusForked.Things
 {
     public class MendingHandler : IExposable
     {
@@ -20,7 +20,7 @@ namespace OutfitStandsPlus.Things
             {
                 if (RareTicksPerMendCached == null)
                 {
-                    RareTicksPerMendCached = LoadedModManager.GetMod<OutfitStandsPlusMod>().GetSettings<OutfitStandsPlusModSettings>().RareTicksPerMend;
+                    RareTicksPerMendCached = LoadedModManager.GetMod<OutfitStandsPlusForkedMod>().GetSettings<OutfitStandsPlusForkedModSettings>().RareTicksPerMend;
                 }
                 return (int) RareTicksPerMendCached;
             }

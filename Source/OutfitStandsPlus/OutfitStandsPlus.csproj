@@ -7,8 +7,8 @@
         <ProjectGuid>{0BA8E6B6-82E5-40F8-9A5B-1FEAB1C56C16}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>OutfitStandsPlus</RootNamespace>
-        <AssemblyName>OutfitStandsPlus</AssemblyName>
+        <RootNamespace>OutfitStandsPlusForked</RootNamespace>
+        <AssemblyName>OutfitStandsPlusForked</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
