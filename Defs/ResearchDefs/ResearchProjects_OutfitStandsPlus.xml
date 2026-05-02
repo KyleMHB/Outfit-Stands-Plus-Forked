@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <ResearchProjectDef>
+        <defName>OutfitStandsPlus_MechanizedOutfitStandsResearch</defName>
+        <label>mechanized outfit stands</label>
+        <description>Produce mechanized outfit stands that help colonists quickly change apparel to respond to emergencies.</description>
+        <baseCost>1000</baseCost>
+        <techLevel>Industrial</techLevel>
+        <prerequisites>
+            <li>ComplexFurniture</li>
+            <li>MicroelectronicsBasics</li>
+        </prerequisites>
+        <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+        <requiredResearchFacilities>
+            <li>MultiAnalyzer</li>
+        </requiredResearchFacilities>
+        <researchViewX>11.00</researchViewX>
+        <researchViewY>6.20</researchViewY>
+    </ResearchProjectDef>
+
+    <ResearchProjectDef>
+        <defName>OutfitStandsPlus_MendingOutfitStandsResearch</defName>
+        <label>mending outfit stands</label>
+        <description>Produce mending outfit stands that repair stored equipment.</description>
+        <baseCost>2000</baseCost>
+        <techLevel>Spacer</techLevel>
+        <prerequisites>
+            <li>OutfitStandsPlus_MechanizedOutfitStandsResearch</li>
+            <li>Fabrication</li>
+        </prerequisites>
+        <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+        <requiredResearchFacilities>
+            <li>MultiAnalyzer</li>
+        </requiredResearchFacilities>
+        <researchViewX>17.00</researchViewX>
+        <researchViewY>6.20</researchViewY>
+    </ResearchProjectDef>
+
+</Defs>

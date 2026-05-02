@@ -1,0 +1,28 @@
+# Local tooling/cache
+.dotnet/
+.vs/
+.vscode/
+.idea/
+
+# Build output
+bin/
+obj/
+Source/**/bin/
+Source/**/obj/
+
+# NuGet/package restore output
+packages/
+Source/**/packages/
+
+# User/local settings
+*.user
+*.suo
+*.DotSettings.user
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Debug symbols are generated during local builds.
+Assemblies/*.pdb

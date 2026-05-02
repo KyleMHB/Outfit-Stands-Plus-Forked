@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <OutfitStandsPlus_ModName>Outfit Stands Plus</OutfitStandsPlus_ModName>
+    <OutfitStandsPlus_ReturnToStandLabel>Return to stand</OutfitStandsPlus_ReturnToStandLabel>
+    <OutfitStandsPlus_ReturnToStandGizmoLabel>return to stand...</OutfitStandsPlus_ReturnToStandGizmoLabel>
+    <OutfitStandsPlus_ReturnToNamedStandLabel>return to {0}</OutfitStandsPlus_ReturnToNamedStandLabel>
+    <OutfitStandsPlus_ReturnToNamedStandGizmoLabel>return to {0}...</OutfitStandsPlus_ReturnToNamedStandGizmoLabel>
+    <OutfitStandsPlus_ReturnToNamedStandGizmoDescription>Order this colonist to return their stand outfit to {0}.</OutfitStandsPlus_ReturnToNamedStandGizmoDescription>
+    <OutfitStandsPlus_SwapNamedStandGizmoLabel>swap with {0}...</OutfitStandsPlus_SwapNamedStandGizmoLabel>
+    <OutfitStandsPlus_SwapNamedStandGizmoDescription>Order this colonist to swap equipment with {0}.</OutfitStandsPlus_SwapNamedStandGizmoDescription>
+    <OutfitStandsPlus_GroupUseAssignedStands_Label>Use assigned armor stands</OutfitStandsPlus_GroupUseAssignedStands_Label>
+    <OutfitStandsPlus_GroupUseAssignedStands_Desc>Send selected colonists to their assigned armor stands. Each colonist uses their current swap or return mode.</OutfitStandsPlus_GroupUseAssignedStands_Desc>
+    <OutfitStandsPlus_GroupUseAssignedStands_None>No selected colonists can use an assigned armor stand.</OutfitStandsPlus_GroupUseAssignedStands_None>
+    <OutfitStandsPlus_GroupUseAssignedStands_Skipped>Sent {0} colonists to assigned armor stands; skipped {1}.</OutfitStandsPlus_GroupUseAssignedStands_Skipped>
+    <OutfitStandsPlus_InvalidMinifiedStandLabel>invalid minified armor stand</OutfitStandsPlus_InvalidMinifiedStandLabel>
+    <OutfitStandsPlus_InvalidMinifiedStandInspect>This is an internal minified armor stand crate without a contained stand. Spawn a real armor stand variant instead.</OutfitStandsPlus_InvalidMinifiedStandInspect>
+    <OutfitStandsPlus_AutoStandName>Armor Stand {0}</OutfitStandsPlus_AutoStandName>
+    <OutfitStandsPlus_StandName>Stand name</OutfitStandsPlus_StandName>
+    <OutfitStandsPlus_RenameStand_Label>Rename stand</OutfitStandsPlus_RenameStand_Label>
+    <OutfitStandsPlus_RenameStand_Desc>Set a custom display name for this outfit stand.</OutfitStandsPlus_RenameStand_Desc>
+    <OutfitStandsPlus_ClearName>Clear name</OutfitStandsPlus_ClearName>
+    <OutfitStandsPlus_ApparelPolicySync_Label>Apparel policies: {0}</OutfitStandsPlus_ApparelPolicySync_Label>
+    <OutfitStandsPlus_ApparelPolicySync_Desc>Choose apparel policies whose allowed apparel should live-sync into this stand's apparel filter. Multiple policies are combined by union.</OutfitStandsPlus_ApparelPolicySync_Desc>
+    <OutfitStandsPlus_NoApparelPolicies>No apparel policies available</OutfitStandsPlus_NoApparelPolicies>
+    <OutfitStandsPlus_ClearApparelPolicySync>Clear apparel policy sync</OutfitStandsPlus_ClearApparelPolicySync>
+    <OutfitStandsPlus_AllowAddingItems_Label>Allow adding items</OutfitStandsPlus_AllowAddingItems_Label>
+    <OutfitStandsPlus_AllowAddingItems_Desc>If disabled, colonists will not haul items to this stand.</OutfitStandsPlus_AllowAddingItems_Desc>
+    <OutfitStandsPlus_ReturnToStandGizmoDescription>Order a colonist to return their outfit to the stand, according to its storage settings. The colonist will try to wear all apparel not accepted by the stand.</OutfitStandsPlus_ReturnToStandGizmoDescription>
+    <OutfitStandsPlus_RareTicksPerMendModSetting_Label>Mending stands mend rate</OutfitStandsPlus_RareTicksPerMendModSetting_Label>
+    <OutfitStandsPlus_RareTicksPerMendModSetting_Tooltip>Mending stands restore 1 point of durability to a contained item once per this many rare ticks.\nOne in-game hour is equal to 10 rare ticks.\nReload the save for changes to take effect.</OutfitStandsPlus_RareTicksPerMendModSetting_Tooltip>
+    <OutfitStandsPlus_EquipSpeedFactorPowered_Label>Equip speed factor (powered)</OutfitStandsPlus_EquipSpeedFactorPowered_Label>
+    <OutfitStandsPlus_EquipSpeedFactorUnpowered_Label>Equip speed factor (unpowered)</OutfitStandsPlus_EquipSpeedFactorUnpowered_Label>
+    <OutfitStandsPlus_EquipSpeedFactor_Tooltip>Modifies speed with which pawns equip/transfer items to stands. 100 = normal speed, 0 = instant.</OutfitStandsPlus_EquipSpeedFactor_Tooltip>
+    <OutfitStandsPlus_RemoveInteractionCells>Remove interaction cells</OutfitStandsPlus_RemoveInteractionCells>
+    <OutfitStandsPlus_RemoveInteractionCells_Tooltip>If enabled, mechanized and mending racks will not have interaction spots in front of them, just like vanilla outfit stands. Requires a game restart.</OutfitStandsPlus_RemoveInteractionCells_Tooltip>
+    <OutfitStandsPlus_RemoveMechanizedStands>Remove mechanized stands</OutfitStandsPlus_RemoveMechanizedStands>
+    <OutfitStandsPlus_RemoveMechanizedStands_Tooltip>If enabled, mechanized outfit stands and their research project will be removed from the game. Requires a game restart.</OutfitStandsPlus_RemoveMechanizedStands_Tooltip>
+    <OutfitStandsPlus_RemoveMendingStands>Remove mending stands</OutfitStandsPlus_RemoveMendingStands>
+    <OutfitStandsPlus_RemoveMendingStands_Tooltip>If enabled, mending outfit stands and their research project will be removed from the game. Requires a game restart.</OutfitStandsPlus_RemoveMendingStands_Tooltip>
+    <OutfitStandsPlus_RestoreDefaultSettings_Label>Restore default settings</OutfitStandsPlus_RestoreDefaultSettings_Label>
+</LanguageData>

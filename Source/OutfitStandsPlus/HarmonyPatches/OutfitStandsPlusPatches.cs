@@ -1,0 +1,141 @@
+﻿using System.Collections.Generic;
+using HarmonyLib;
+using Verse;
+using UnityEngine;
+using RimWorld;
+using System;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using OutfitStandsPlus.DefOfs;
+using OutfitStandsPlus.ThingComps;
+using OutfitStandsPlus.Utility;
+using Verse.AI;
+
+namespace OutfitStandsPlus.HarmonyPatches
+{
+    [HarmonyPatch(typeof(Building_OutfitStand), nameof(Building_OutfitStand.GetInspectString))]
+    public class OutfitStandGetInspectStringPatch
+    {
+        static string Postfix(string result, Building_OutfitStand __instance)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            if (result.Length > 0)
+            {
+                stringBuilder.AppendLine(result);   
+            }
+            if (__instance.Faction == Faction.OfPlayer)
+            {
+                var c = __instance.GetComp<CompAssignableToPawn_OutfitStandsPlusBase>();
+                Pawn owner = c != null && c.AssignedPawns.Any() ? c.AssignedPawns.First() : null;
+                var owner_string = owner != null ? owner.Label : "Nobody".Translate().ToString();
+                var standComp = __instance.GetComp<OutfitStandsPlusStandComp>();
+                if (standComp != null && (standComp.HasCustomName || standComp.HasAssignedPawnName))
+                {
+                    stringBuilder.AppendLine("OutfitStandsPlus_StandName".Translate() + ": " + standComp.DisplayName);
+                }
+                stringBuilder.AppendLine("Owner".Translate() + ": " + owner_string);    
+            }
+            return stringBuilder.ToString().TrimEndNewlines();
+        }
+    }
+    
+    [HarmonyPatch(typeof(Building_OutfitStand), nameof(Building_OutfitStand.GetFloatMenuOptions))]
+    public class OutfitStandCompFloatMenuOptionsPatch
+    {
+        static IEnumerable<FloatMenuOption> Postfix(IEnumerable<FloatMenuOption> values, Building_OutfitStand __instance, Pawn selPawn)
+        {
+            int pos = 0;
+            foreach (var value in values)
+            {
+                yield return value;
+                if (pos == 0)
+                {
+                    var standComp = __instance.GetComp<OutfitStandsPlusStandComp>();
+                    string label = standComp != null && (standComp.HasCustomName || standComp.HasAssignedPawnName)
+                        ? "OutfitStandsPlus_ReturnToNamedStandLabel".Translate(standComp.DisplayName).CapitalizeFirst()
+                        : "OutfitStandsPlus_ReturnToStandLabel".Translate().CapitalizeFirst();
+                    yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, (Action) (() =>
+                    {
+                        Job job = JobMaker.MakeJob(OutfitStandsPlusJobDefOf.OutfitStandsPlus_JobReturnToStand, (LocalTargetInfo) (Thing) __instance);
+                        job.playerForced = true;
+                        selPawn.jobs.TryTakeOrderedJob(job);
+                    })), selPawn, (LocalTargetInfo) (Thing) __instance);    
+                }
+                pos++;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(JobDriver_UseOutfitStand), "DoTransfer")]
+    public class OutfitStandSwapOutfitPatch
+    {
+        static bool Prefix(JobDriver_UseOutfitStand __instance)
+        {
+            if (__instance?.job?.targetA.Thing is Building_OutfitStand outfitStand)
+            {
+                OutfitStandTransferUtility.UseStand(__instance.pawn, outfitStand);
+            }
+            return false;
+        }    
+    }
+    
+    [HarmonyPatch(typeof(JobDriver_UseOutfitStand), "Notify_Starting")]
+    public class OutfitStandSwapDurationPatch
+    {
+        static void Postfix(JobDriver_UseOutfitStand __instance)
+        {
+            var outfitStand = (Building_OutfitStand) __instance.job.targetA.Thing;
+            outfitStand.GetComp<OutfitStandsPlusStandComp>()?.SyncApparelPolicyFilter();
+            var comp = outfitStand.GetComp<OutfitStandsPlusMainComp>();
+            if (comp is null)
+            {
+                return;
+            }
+            
+            var durationField = typeof(JobDriver_UseOutfitStand).GetField("duration",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            if (durationField == null)
+            {
+                Log.Warning("[Outfit Stands Plus] Could not find JobDriver_UseOutfitStand.duration; equip speed factor skipped.");
+                return;
+            }
+            var duration = (int) durationField.GetValue(__instance);
+            var newDuration = comp.ApplyEquipSpeedFactor(duration);
+            // Log.Warning(duration + " => " + newDuration);
+            durationField.SetValue(__instance, newDuration);
+            comp.AllowAddingItems = false;
+        }
+    }
+    
+    [HarmonyPatch(typeof(Building_OutfitStand))]
+    public class OutfitStandAllowAddingPatch
+    {
+        public static MethodBase TargetMethod()
+        {
+            return typeof(Building_OutfitStand).GetInterfaceMap(typeof(IHaulDestination)).TargetMethods.First(m => m.Name == "RimWorld.IHaulDestination.get_HaulDestinationEnabled");
+        }
+        static bool Prefix(ref bool __result, Building_OutfitStand __instance)
+        {
+            __instance.GetComp<OutfitStandsPlusStandComp>()?.SyncApparelPolicyFilter();
+            var comp = __instance.GetComp<OutfitStandsPlusMainComp>();
+            if (comp != null && !comp.AllowAddingItems)
+            {
+                __result = false;
+                return false;
+            }
+
+            return true;
+        }
+    }
+    
+    [StaticConstructorOnStartup]
+    public static class Startup
+    {
+        static Startup()
+        {
+            var harmony = new Harmony("khamenman.OutfitStandsPlus");
+            harmony.PatchAll();
+        }
+    }
+}
