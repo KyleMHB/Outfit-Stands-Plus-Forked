@@ -24,5 +24,6 @@ Source/**/packages/
 *.tmp
 *.bak
 
-# Debug symbols are generated during local builds.
+# Runtime assemblies are generated during local builds and deployed by deploy.ps1.
+Assemblies/*.dll
 Assemblies/*.pdb

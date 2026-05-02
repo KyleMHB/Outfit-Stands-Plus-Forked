@@ -128,9 +128,5 @@
         <None Include="packages.config" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <Target Name="DeleteOldFiles" AfterTargets="PostBuildEvent">
-        <Exec Command="powershell.exe -executionpolicy bypass -command &quot;&amp; {.\postbuild.ps1 '$(SolutionDir)'}&quot;" />
-    </Target>
-    
 </Project>
 

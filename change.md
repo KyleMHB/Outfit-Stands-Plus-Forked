@@ -5,6 +5,7 @@ Always update this file when changing the mod.
 ## Unreleased
 
 ### Added
+- Added `deploy.ps1` to build the source repository and deploy runtime files to the Steam RimWorld mod folder.
 - Added custom naming support for armor stands, including automatic names based on the assigned pawn nickname.
 - Added rename support for all stand variants: adult, kid, mechanized adult, mechanized kid, mending adult, and mending kid stands.
 - Added live apparel policy sync for stands using the union of multiple selected apparel policies.
@@ -15,6 +16,9 @@ Always update this file when changing the mod.
 - Added invalid minified stand fallback text for dev-spawned `OutfitStandPlusMinified` instances.
 
 ### Changed
+- Moved the source repository workflow to `E:\Coding\Rimworld\Outfit Stands Plus Forked`, with the Steam RimWorld mod folder treated as a runtime deploy target.
+- Stopped tracking generated runtime assemblies in Git; deploy now produces `Assemblies/OutfitStandsPlus.dll`.
+- Removed the broken missing `postbuild.ps1` project hook.
 - Reworked stand gear transfers to use transactional validation before moving apparel or weapons.
 - Recomputed transfer plans at execution time so stale apparel changes from other mods are skipped safely.
 - Replaced weapon `MakeRoomFor` transfer behavior with explicit remove, add, and rollback handling.
