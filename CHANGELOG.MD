@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-05-03
+
+### Added
+
+- Added automatic assigned outfit stand use when a player-controlled pawn's apparel policy changes and the assigned stand has useful policy gear.
+
+### Changed
+
+- Skipped automatic stand jobs when Gear Up and Go, stand-use, wear, or apparel-removal jobs are already active or queued.
+- Bumped assembly version to `1.0.1.0`.
+
 ## 2026-05-02
 
 ### Changed

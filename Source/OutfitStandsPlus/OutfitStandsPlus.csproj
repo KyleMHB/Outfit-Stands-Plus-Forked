@@ -90,6 +90,7 @@
         <Compile Include="Things\MechanizedOutfitStand.cs" />
         <Compile Include="Things\MendingOutfitStand.cs" />
         <Compile Include="Things\OutfitStandPlusMinified.cs" />
+        <Compile Include="Utility\OutfitStandAutoUseUtility.cs" />
         <Compile Include="Utility\OutfitStandCompatibilityUtility.cs" />
         <Compile Include="Utility\OutfitStandTransferUtility.cs" />
     </ItemGroup>

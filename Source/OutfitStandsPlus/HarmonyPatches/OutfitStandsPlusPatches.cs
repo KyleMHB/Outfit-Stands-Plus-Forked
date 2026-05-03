@@ -128,6 +128,28 @@ namespace OutfitStandsPlusForked.HarmonyPatches
             return true;
         }
     }
+
+    [HarmonyPatch(typeof(Pawn_OutfitTracker), nameof(Pawn_OutfitTracker.CurrentApparelPolicy), MethodType.Setter)]
+    public class PawnOutfitPolicyChangedPatch
+    {
+        private static readonly FieldInfo PawnField = typeof(Pawn_OutfitTracker).GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
+
+        static void Prefix(Pawn_OutfitTracker __instance, ref ApparelPolicy __state)
+        {
+            __state = __instance?.CurrentApparelPolicy;
+        }
+
+        static void Postfix(Pawn_OutfitTracker __instance, ApparelPolicy value, ApparelPolicy __state)
+        {
+            if (__state == value || value == null)
+            {
+                return;
+            }
+
+            Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
+            OutfitStandAutoUseUtility.TryStartAssignedStandJobForPolicyChange(pawn);
+        }
+    }
     
     [StaticConstructorOnStartup]
     public static class Startup
