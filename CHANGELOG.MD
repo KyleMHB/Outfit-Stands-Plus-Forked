@@ -5,6 +5,7 @@
 ### Added
 
 - Added automatic assigned outfit stand use when a player-controlled pawn's apparel policy changes and the assigned stand has useful policy gear.
+- Added automatic assigned stand decisions on undraft, preferring useful stand swaps and returning gear only when the stand has no useful current-policy gear.
 
 ### Fixed
 
@@ -13,7 +14,7 @@
 ### Changed
 
 - Skipped automatic stand jobs when Gear Up and Go, stand-use, wear, or apparel-removal jobs are already active or queued.
-- Bumped assembly version to `1.0.2.0`.
+- Bumped assembly version to `1.0.3.0`.
 
 ## 2026-05-02
 

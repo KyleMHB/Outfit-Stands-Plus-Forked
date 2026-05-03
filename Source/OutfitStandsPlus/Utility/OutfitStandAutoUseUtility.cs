@@ -9,7 +9,7 @@ namespace OutfitStandsPlusForked.Utility
 {
     public static class OutfitStandAutoUseUtility
     {
-        public static bool TryStartAssignedStandJobForPolicyChange(Pawn pawn)
+        public static bool TryStartAssignedStandJob(Pawn pawn)
         {
             if (!CanAutoUseStand(pawn) || HasBlockingGearJob(pawn))
             {
@@ -23,13 +23,22 @@ namespace OutfitStandsPlusForked.Utility
             }
 
             stand.GetComp<OutfitStandsPlusForkedStandComp>()?.SyncApparelPolicyFilter();
-            if (!StandHasUsefulGear(stand, pawn) ||
-                !pawn.CanReserveAndReach(stand, PathEndMode.InteractionCell, Danger.Deadly))
+            if (!pawn.CanReserveAndReach(stand, PathEndMode.InteractionCell, Danger.Deadly))
             {
                 return false;
             }
 
-            Job job = JobMaker.MakeJob(JobDefOf.UseOutfitStand, stand);
+            JobDef jobDef = StandHasUsefulGear(stand, pawn)
+                ? JobDefOf.UseOutfitStand
+                : PawnHasGearToReturn(stand, pawn)
+                    ? OutfitStandsPlusForkedJobDefOf.OutfitStandsPlus_JobReturnToStand
+                    : null;
+            if (jobDef == null)
+            {
+                return false;
+            }
+
+            Job job = JobMaker.MakeJob(jobDef, stand);
             pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             return true;
         }
@@ -98,6 +107,21 @@ namespace OutfitStandsPlusForked.Utility
                     IsUsefulWeapon(stand.HeldWeapon, pawn));
         }
 
+        private static bool PawnHasGearToReturn(Building_OutfitStand stand, Pawn pawn)
+        {
+            if (stand?.StoreSettings == null || pawn?.apparel == null || pawn.equipment == null)
+            {
+                return false;
+            }
+
+            return pawn.apparel.WornApparel.Any(apparel =>
+                       apparel != null &&
+                       !apparel.Destroyed &&
+                       !pawn.apparel.IsLocked(apparel) &&
+                       stand.StoreSettings.AllowedToAccept(apparel)) ||
+                   PawnWeaponCanReturnToStand(stand, pawn);
+        }
+
         private static bool IsUsefulApparel(Building_OutfitStand stand, Pawn pawn, Apparel apparel)
         {
             if (apparel == null ||
@@ -135,6 +159,17 @@ namespace OutfitStandsPlusForked.Utility
             }
 
             return EquipmentUtility.CanEquip(weapon, pawn, out string _);
+        }
+
+        private static bool PawnWeaponCanReturnToStand(Building_OutfitStand stand, Pawn pawn)
+        {
+            ThingWithComps weapon = pawn.equipment.Primary;
+            if (weapon == null || stand.HeldWeapon != null || !stand.StoreSettings.AllowedToAccept(weapon))
+            {
+                return false;
+            }
+
+            return !pawn.IsQuestLodger() || EquipmentUtility.QuestLodgerCanUnequip(weapon, pawn);
         }
     }
 }

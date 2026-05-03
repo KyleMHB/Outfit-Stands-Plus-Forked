@@ -146,7 +146,29 @@ namespace OutfitStandsPlusForked.HarmonyPatches
             }
 
             Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
-            OutfitStandAutoUseUtility.TryStartAssignedStandJobForPolicyChange(pawn);
+            OutfitStandAutoUseUtility.TryStartAssignedStandJob(pawn);
+        }
+    }
+
+    [HarmonyPatch(typeof(Pawn_DraftController), nameof(Pawn_DraftController.Drafted), MethodType.Setter)]
+    public class PawnUndraftedPatch
+    {
+        private static readonly FieldInfo PawnField = typeof(Pawn_DraftController).GetField("pawn", BindingFlags.Instance | BindingFlags.NonPublic);
+
+        static void Prefix(Pawn_DraftController __instance, ref bool __state)
+        {
+            __state = __instance?.Drafted == true;
+        }
+
+        static void Postfix(Pawn_DraftController __instance, bool value, bool __state)
+        {
+            if (!__state || value)
+            {
+                return;
+            }
+
+            Pawn pawn = PawnField?.GetValue(__instance) as Pawn;
+            OutfitStandAutoUseUtility.TryStartAssignedStandJob(pawn);
         }
     }
     
