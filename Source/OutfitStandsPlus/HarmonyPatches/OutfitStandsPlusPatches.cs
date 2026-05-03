@@ -104,7 +104,6 @@ namespace OutfitStandsPlusForked.HarmonyPatches
             var newDuration = comp.ApplyEquipSpeedFactor(duration);
             // Log.Warning(duration + " => " + newDuration);
             durationField.SetValue(__instance, newDuration);
-            comp.AllowAddingItems = false;
         }
     }
     

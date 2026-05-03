@@ -1,6 +1,4 @@
-using System;
 using System.Linq;
-using System.Reflection;
 using OutfitStandsPlusForked.DefOfs;
 using OutfitStandsPlusForked.ThingComps;
 using RimWorld;
@@ -11,9 +9,6 @@ namespace OutfitStandsPlusForked.Utility
 {
     public static class OutfitStandAutoUseUtility
     {
-        private static readonly MethodInfo SetAllowHaulingMethod =
-            typeof(Building_OutfitStand).GetMethod("SetAllowHauling", BindingFlags.NonPublic | BindingFlags.Instance);
-
         public static bool TryStartAssignedStandJobForPolicyChange(Pawn pawn)
         {
             if (!CanAutoUseStand(pawn) || HasBlockingGearJob(pawn))
@@ -34,7 +29,6 @@ namespace OutfitStandsPlusForked.Utility
                 return false;
             }
 
-            DisableStandHauling(stand);
             Job job = JobMaker.MakeJob(JobDefOf.UseOutfitStand, stand);
             pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             return true;
@@ -141,23 +135,6 @@ namespace OutfitStandsPlusForked.Utility
             }
 
             return EquipmentUtility.CanEquip(weapon, pawn, out string _);
-        }
-
-        private static void DisableStandHauling(Building_OutfitStand stand)
-        {
-            if (SetAllowHaulingMethod == null)
-            {
-                return;
-            }
-
-            try
-            {
-                SetAllowHaulingMethod.Invoke(stand, new object[] { false });
-            }
-            catch (Exception e)
-            {
-                Log.Warning($"[Outfit Stands Plus Forked] Could not disable hauling before automatic stand use: {e}");
-            }
         }
     }
 }

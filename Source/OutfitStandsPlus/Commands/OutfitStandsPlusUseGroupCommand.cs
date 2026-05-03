@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using OutfitStandsPlusForked.DefOfs;
 using OutfitStandsPlusForked.ThingComps;
 using RimWorld;
@@ -13,8 +12,6 @@ namespace OutfitStandsPlusForked.Commands
     public class OutfitStandsPlusForkedUseGroupCommand : Command
     {
         private readonly List<Pawn> pawns;
-        private static readonly MethodInfo SetAllowHaulingMethod =
-            typeof(Building_OutfitStand).GetMethod("SetAllowHauling", BindingFlags.NonPublic | BindingFlags.Instance);
 
         public OutfitStandsPlusForkedUseGroupCommand(IEnumerable<Pawn> selectedPawns)
         {
@@ -79,11 +76,6 @@ namespace OutfitStandsPlusForked.Commands
             if (pawn == null || stand == null || pawn.Downed || !pawn.CanReserveAndReach(stand, PathEndMode.InteractionCell, Danger.Deadly))
             {
                 return false;
-            }
-
-            if (SetAllowHaulingMethod != null)
-            {
-                SetAllowHaulingMethod.Invoke(stand, new object[] { false });
             }
 
             stand.GetComp<OutfitStandsPlusForkedStandComp>()?.SyncApparelPolicyFilter();

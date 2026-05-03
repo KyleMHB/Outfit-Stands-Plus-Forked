@@ -6,10 +6,14 @@
 
 - Added automatic assigned outfit stand use when a player-controlled pawn's apparel policy changes and the assigned stand has useful policy gear.
 
+### Fixed
+
+- Fixed assigned outfit stand use disabling stand item intake, which could make pawns haul returned gear to other storage after Gear Up and Go.
+
 ### Changed
 
 - Skipped automatic stand jobs when Gear Up and Go, stand-use, wear, or apparel-removal jobs are already active or queued.
-- Bumped assembly version to `1.0.1.0`.
+- Bumped assembly version to `1.0.2.0`.
 
 ## 2026-05-02
 

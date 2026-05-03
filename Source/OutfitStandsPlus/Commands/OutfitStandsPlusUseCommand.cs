@@ -1,6 +1,4 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using OutfitStandsPlusForked.DefOfs;
 using OutfitStandsPlusForked.ThingComps;
 using RimWorld;
@@ -55,7 +53,6 @@ namespace OutfitStandsPlusForked.Commands
         {
             get
             {
-                var self = this;
                 yield return new FloatMenuOption("SwapOutfitGizmo".Translate().CapitalizeFirst(),
                     delegate
                     {
@@ -79,19 +76,6 @@ namespace OutfitStandsPlusForked.Commands
             }
             if (Pawn.CanReserveAndReach(OutfitStand, PathEndMode.InteractionCell, Danger.Deadly))
             {
-                // SetAllowHauling is private for whatever reason so this has to be done
-                var setAllowHauling = typeof(Building_OutfitStand).GetMethod("SetAllowHauling", BindingFlags.NonPublic | BindingFlags.Instance);
-                if (setAllowHauling != null)
-                {
-                    var allow_raw = new[] {false};
-                    var allow = Array.ConvertAll(allow_raw, x => (object)x);
-                    setAllowHauling.Invoke(OutfitStand, allow);
-                }
-                else
-                {
-                    Log.Warning("[Outfit Stands Plus Forked] Could not find Building_OutfitStand.SetAllowHauling; continuing without changing hauling state.");
-                }
-                
                 OutfitStand.GetComp<OutfitStandsPlusForkedStandComp>()?.SyncApparelPolicyFilter();
                 var selectedJobDef = Pawn.GetComp<OutfitStandsPlusForkedUseCommandsComp>().CurrentOutfitStandJobDef;
                 Job job = JobMaker.MakeJob(selectedJobDef, OutfitStand);
