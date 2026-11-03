@@ -20,7 +20,7 @@ The mod uses stand gizmos, assignments, and selected apparel policies. No separa
 
 [h1]Requirements and Dependencies[/h1]
 [list]
-[*]RimWorld 1.6.
+[*]RimWorld 1.6 and 1.7.
 [*]RimWorld: Odyssey.
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077]Harmony[/url].
 [/list]
@@ -29,6 +29,7 @@ The mod uses stand gizmos, assignments, and selected apparel policies. No separa
 [list]
 [*][b]Load order:[/b] Load after Odyssey and Harmony.
 [*][b]Optional integrations:[/b] Gear Up And Go and Defensive Positions Forked.
+[*]A user reports that Performance Esmolas' "Static Container Optimization" prevents mending outfit stands from ticking and repairing stored items. Disable that option in Performance Esmolas if your mending stands are not repairing gear.
 [*][b]Transfer safety:[/b] Stand plans are validated again at execution time so stale changes from other mods are skipped safely.
 [*][b]Job safety:[/b] Automatic stand jobs do not start while another supported gear-flow or movement job owns the pawn.
 [/list]
@@ -41,12 +42,9 @@ Compared with the upstream mod, this fork adds custom naming across stand varian
 [h1]Credits[/h1]
 Original Outfit Stands Plus by khamenman. This fork is maintained by KyleMHB.
 
-[h1]License and Forking Policy[/h1]
+[h1]License[/h1]
 This project inherits the original mod's license.
 
-If your fork primarily consists of bug fixes or feature additions that align with the core vision of this mod, I reserve the right to request that your changes be submitted as a Pull Request to my existing codebase rather than being published as a completely separate standalone release.
-
-This is a project request, not an additional license restriction.
 
 [h1]Links[/h1]
 Support me on Ko-fi. This does not imply endorsement by the original authors.
@@ -56,4 +54,9 @@ Support me on Ko-fi. This does not imply endorsement by the original authors.
 [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3724311713]Outfit Stands Plus Forked on Steam Workshop[/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3545172389]Upstream Outfit Stands Plus on Steam Workshop[/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3724294345]Better Pawn Control Forked[/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3714050938]Cargo Containers Expanded[/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3710884766]Everything Has Quality Reforked[/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3724312502]Gear Up and Go Reforked[/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3712317437]Stats Forked[/url]
 [/list]

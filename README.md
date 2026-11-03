@@ -1,6 +1,6 @@
 # Outfit Stands Plus Forked
 
-Outfit Stands Plus Forked is a RimWorld 1.6 mod that makes outfit stands easier to use and safer to integrate with other gear-flow mods.
+Outfit Stands Plus Forked is a RimWorld 1.6 and 1.7 mod that makes outfit stands easier to use and safer to integrate with other gear-flow mods.
 
 It keeps stand naming, assignment, and apparel handling tied to the assigned pawn or custom stand identity while avoiding duplicate or unsafe transfers.
 
@@ -65,11 +65,9 @@ The primary validation command is the Release build:
 dotnet build .\Source\OutfitStandsPlus\OutfitStandsPlus.csproj -c Release
 ```
 
-## Contributing and Forking Policy
+## Contributing
 
 > Contributions, issues, and feature requests are welcome.
->
-> **Forking Policy:** If your fork primarily consists of bug fixes or feature additions that align with the core vision of this project, I reserve the right to request that your changes be submitted as a Pull Request to this existing codebase rather than being published as a completely separate standalone release, package, listing, or distribution.
 
 ## Links
 
@@ -78,7 +76,14 @@ Support me on Ko-fi. This does not imply endorsement by the original authors.
 
 [![Support me on Ko-fi](https://img.shields.io/badge/Support_me_on_Ko--fi-72a4f2?style=for-the-badge&logo=kofi&logoColor=white)](https://ko-fi.com/I7L525WMJ6)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KyleMHB/Outfit-Stands-Plus-Forked)
-- **Steam Workshop:** <https://steamcommunity.com/sharedfiles/filedetails/?id=3545172389>
+- [Upstream Outfit Stands Plus on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3545172389)
+
+- [Better Pawn Control Forked](https://steamcommunity.com/sharedfiles/filedetails/?id=3724294345)
+- [Cargo Containers Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=3714050938)
+- [Everything Has Quality Reforked](https://steamcommunity.com/sharedfiles/filedetails/?id=3710884766)
+- [Gear Up and Go Reforked](https://steamcommunity.com/sharedfiles/filedetails/?id=3724312502)
+- [Outfit Stands Plus Forked on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3724311713)
+- [Stats Forked](https://steamcommunity.com/sharedfiles/filedetails/?id=3712317437)
 
 ## License
 

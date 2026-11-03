@@ -27,8 +27,9 @@
             </li>
             <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp">
             </li>
+            <li Class="OutfitStandsPlusForked.Things.CompProperties_MendingOutfitStand" />
         </comps>
-        <tickerType>Rare</tickerType>
+        <tickerType>Normal</tickerType>
         <researchPrerequisites>
             <li>OutfitStandsPlus_MendingOutfitStandsResearch</li>
         </researchPrerequisites>

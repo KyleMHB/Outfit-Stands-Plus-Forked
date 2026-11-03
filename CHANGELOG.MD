@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-18
+
+### Fixed
+
+- Fixed adult and child mending stands failing to repair stored gear in RimWorld 1.7. Repair speed, power requirements and saved repair progress are preserved.
+
+## 2026-10-14
+
+### Changed
+
+- Added RimWorld 1.7 compatibility while retaining 1.6 support.
+
 ## 2026-05-03
 
 ### Added
