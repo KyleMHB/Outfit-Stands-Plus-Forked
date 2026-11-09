@@ -179,6 +179,7 @@ namespace OutfitStandsPlusForked.HarmonyPatches
         {
             var harmony = new Harmony("khamenman.OutfitStandsPlusForked");
             harmony.PatchAll();
+            ForceWearWithoutOdysseyPatch.Apply(harmony);
         }
     }
 }

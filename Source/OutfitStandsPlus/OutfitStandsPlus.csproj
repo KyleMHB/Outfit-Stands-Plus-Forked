@@ -11,7 +11,10 @@
         <AssemblyName>OutfitStandsPlusForked</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
-        <RimWorldManagedPath Condition="'$(RimWorldManagedPath)' == ''">E:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed</RimWorldManagedPath>
+        <!-- RimWorld 1.7 no longer ships the Unity managed folder; build against the 1.6 reference assemblies, which run on both. -->
+        <RimWorldManagedPath Condition="'$(RimWorldManagedPath)' == ''">$(UserProfile)\.nuget\packages\krafs.rimworld.ref\1.6.4871\ref\net472</RimWorldManagedPath>
+        <Net472ReferencePath>$(UserProfile)\.nuget\packages\microsoft.netframework.referenceassemblies.net472\1.0.3\build\.NETFramework\v4.7.2</Net472ReferencePath>
+        <FrameworkPathOverride Condition="'$(FrameworkPathOverride)' == '' And Exists('$(Net472ReferencePath)')">$(Net472ReferencePath)</FrameworkPathOverride>
         <HarmonyAssemblyPath Condition="'$(HarmonyAssemblyPath)' == ''">E:\Steam\steamapps\workshop\content\294100\2009463077\1.6\Assemblies\0Harmony.dll</HarmonyAssemblyPath>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -84,6 +87,7 @@
         <Compile Include="Commands\OutfitStandsPlusUseGroupCommand.cs" />
         <Compile Include="Commands\OutfitStandsPlusUseCommand.cs" />
         <Compile Include="DefOfs\JobDefOf.cs" />
+        <Compile Include="HarmonyPatches\ForceWearWithoutOdysseyPatch.cs" />
         <Compile Include="HarmonyPatches\OutfitStandsPlusPatches.cs" />
         <Compile Include="Jobs\JobDriver_OutfitStandsPlusReturnToStand.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

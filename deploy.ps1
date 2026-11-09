@@ -9,5 +9,6 @@ Invoke-RimWorldModDeploy `
     -BuildPath (Join-Path $PSScriptRoot "Source\OutfitStandsPlus\OutfitStandsPlus.csproj") `
     -Configuration "Release" `
     -DotNetHome (Join-Path $PSScriptRoot ".dotnet") `
-    -Folders @("About", "Assemblies", "Defs", "Languages", "Patches") `
+    -Folders @("About", "Assemblies", "Defs", "Languages", "NoOdyssey", "Patches") `
+    -Files @("LoadFolders.xml") `
     -RemoveFilePatterns @("*.pdb")

@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-11-09
+
+### Changed
+
+- Odyssey is no longer required. Without Odyssey the mod supplies the plain and kid outfit stands (same defNames as Odyssey's, so saves carry over if Odyssey is added later; the kid stand needs Biotech), the stand jobs, the stand text and its own stand art. Odyssey players load exactly what they did before.
+- Without Odyssey, apparel can still be force-worn onto an outfit stand; core only allows that with Odyssey, so a small patch enables it when Odyssey is off.
+- The art used without Odyssey is a scripted placeholder (`scripts/draw-no-odyssey-art.py`) until final art replaces it.
+- The project now builds against the 1.6 reference assemblies in the NuGet cache, since RimWorld 1.7 no longer ships the Unity managed folder.
+
+### Added
+
+- Developer test batch `osp-stands` (`DevTests/`, run with `python tools/osp_test.py run osp-stands`).
+
 ## 2026-10-18
 
 ### Fixed

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Text core's outfit stand code asks for; Odyssey normally supplies these keys. -->
+<LanguageData>
+    <ContainedApparelBeauty>Beauty of displayed apparel</ContainedApparelBeauty>
+    <SwapOutfit>change into outfit</SwapOutfit>
+    <SwapOutfitGizmo>change into outfit...</SwapOutfitGizmo>
+    <SwapOutfitDesc>Order a colonist to put on everything displayed on this stand. Anything they take off is left on the stand.</SwapOutfitDesc>
+    <CannotSwapOutfit>cannot change into outfit</CannotSwapOutfit>
+    <OutfitStandEmpty>the stand holds nothing</OutfitStandEmpty>
+    <EjectApparelTooltip>Take this off the stand.</EjectApparelTooltip>
+    <CommandAllowRemovingApparel>Allow taking items</CommandAllowRemovingApparel>
+    <CommandAllowRemovingApparelDesc>When off, haulers leave this stand's items alone and colonists only wear them when ordered to.</CommandAllowRemovingApparelDesc>
+</LanguageData>

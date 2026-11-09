@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NoOdyssey supplies the outfit stand defs, jobs, text and art that Odyssey normally provides. -->
+<loadFolders>
+    <v1.6>
+        <li>/</li>
+        <li IfModNotActive="Ludeon.RimWorld.Odyssey">NoOdyssey</li>
+    </v1.6>
+    <v1.7>
+        <li>/</li>
+        <li IfModNotActive="Ludeon.RimWorld.Odyssey">NoOdyssey</li>
+    </v1.7>
+</loadFolders>

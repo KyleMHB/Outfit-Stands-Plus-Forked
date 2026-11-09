@@ -27,3 +27,6 @@ Source/**/packages/
 # Runtime assemblies are generated during local builds and deployed by deploy.ps1.
 Assemblies/*.dll
 Assemblies/*.pdb
+
+# Developer test output
+work/

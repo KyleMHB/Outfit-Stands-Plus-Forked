@@ -21,13 +21,16 @@ The mod uses stand gizmos, assignments, and selected apparel policies. No separa
 [h1]Requirements and Dependencies[/h1]
 [list]
 [*]RimWorld 1.6 and 1.7.
-[*]RimWorld: Odyssey.
+[*]Odyssey is optional (see below).
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077]Harmony[/url].
 [/list]
 
+[h1]Playing without Odyssey[/h1]
+Odyssey is not required. Without it, the mod adds the plain outfit stand and, with Biotech, the kid outfit stand, plus everything they need to work, so the mechanized and mending stands work too. Stands built without Odyssey stay in your save if you add Odyssey later. The stand art used without Odyssey is placeholder art for now. With Odyssey enabled nothing changes: you get Odyssey's own stands and art.
+
 [h1]Compatibility, Load Order, Multiplayer, and Save Safety[/h1]
 [list]
-[*][b]Load order:[/b] Load after Odyssey and Harmony.
+[*][b]Load order:[/b] Load after Harmony (and after Odyssey, if you use it).
 [*][b]Optional integrations:[/b] Gear Up And Go and Defensive Positions Forked.
 [*]A user reports that Performance Esmolas' "Static Container Optimization" prevents mending outfit stands from ticking and repairing stored items. Disable that option in Performance Esmolas if your mending stands are not repairing gear.
 [*][b]Transfer safety:[/b] Stand plans are validated again at execution time so stale changes from other mods are skipped safely.
@@ -35,7 +38,7 @@ The mod uses stand gizmos, assignments, and selected apparel policies. No separa
 [/list]
 
 [h1]Fork History[/h1]
-Outfit Stands Plus was created by khamenman. This fork keeps its stand workflow usable with RimWorld 1.6 and Odyssey while adding safer modern gear-flow behavior.
+Outfit Stands Plus was created by khamenman. This fork keeps its stand workflow usable with RimWorld 1.6 and 1.7, with or without Odyssey, while adding safer modern gear-flow behavior.
 
 Compared with the upstream mod, this fork adds custom naming across stand variants, single-pawn assignment, shared multi-pawn controls, live apparel-policy syncing, transactional transfer validation, and integrations with Gear Up And Go and Defensive Positions Forked.
 

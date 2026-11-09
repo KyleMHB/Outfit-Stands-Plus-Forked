@@ -1,0 +1,11 @@
+{
+  "name": "Outfit Stands Plus Forked",
+  "argPrefix": "osp",
+  "modDir": "E:/Steam/steamapps/common/RimWorld/Mods/Outfit Stands Plus Forked",
+  "productionDll": "Assemblies/OutfitStandsPlusForked.dll",
+  "devBuild": "work/devtests/OutfitStandsPlusForked.DevTests.dll",
+  "devProject": "DevTests/OutfitStandsPlusForked.DevTests.csproj",
+  "evidenceFolder": "OutfitStandsPlusForkedTests",
+  "runtimeFolders": ["About", "Assemblies", "Defs", "Languages", "NoOdyssey", "Patches"],
+  "runtimeFiles": ["LoadFolders.xml"]
+}
