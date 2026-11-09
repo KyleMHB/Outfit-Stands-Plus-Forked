@@ -23,27 +23,31 @@
             </value>
         </match>
     </Operation>
+    <!-- The vanilla kid stand only exists with Biotech; skip quietly when it is absent. -->
     <Operation Class="PatchOperationConditional">
-        <xpath>/Defs/ThingDef[defName="Building_KidOutfitStand"]/comps</xpath>
-        <nomatch Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName="Building_KidOutfitStand"]</xpath>
-            <value>
-                <comps>
+        <xpath>/Defs/ThingDef[defName="Building_KidOutfitStand"]</xpath>
+        <match Class="PatchOperationConditional">
+            <xpath>/Defs/ThingDef[defName="Building_KidOutfitStand"]/comps</xpath>
+            <nomatch Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Building_KidOutfitStand"]</xpath>
+                <value>
+                    <comps>
+                        <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedKid">
+                        </li>
+                        <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedMainComp"></li>
+                        <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp"></li>
+                    </comps>
+                </value>
+            </nomatch>
+            <match Class="PatchOperationAdd">
+                <xpath>/Defs/ThingDef[defName="Building_KidOutfitStand"]/comps</xpath>
+                <value>
                     <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedKid">
                     </li>
                     <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedMainComp"></li>
                     <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp"></li>
-                </comps>
-            </value>
-        </nomatch>
-        <match Class="PatchOperationAdd">
-            <xpath>/Defs/ThingDef[defName="Building_KidOutfitStand"]/comps</xpath>
-            <value>
-                <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_AssignableToPawn_OutfitStandsPlusForkedKid">
-                </li>
-                <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedMainComp"></li>
-                <li Class="OutfitStandsPlusForked.ThingComps.CompProperties_OutfitStandsPlusForkedStandComp"></li>
-            </value>
+                </value>
+            </match>
         </match>
     </Operation>
     <Operation Class="PatchOperationAdd">
