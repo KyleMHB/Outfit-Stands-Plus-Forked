@@ -7,5 +7,9 @@
   "devProject": "DevTests/OutfitStandsPlusForked.DevTests.csproj",
   "evidenceFolder": "OutfitStandsPlusForkedTests",
   "runtimeFolders": ["About", "Assemblies", "Defs", "Languages", "NoOdyssey", "Patches"],
-  "runtimeFiles": ["LoadFolders.xml"]
+  "runtimeFiles": ["LoadFolders.xml"],
+  "modSets": {
+    "default": ["brrainz.harmony", "ludeon.rimworld", "kylemhb.outfitstandsplusforked"],
+    "odyssey": ["brrainz.harmony", "ludeon.rimworld", "ludeon.rimworld.odyssey", "kylemhb.outfitstandsplusforked"]
+  }
 }
