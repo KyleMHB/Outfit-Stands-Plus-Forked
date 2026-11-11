@@ -32,7 +32,7 @@
     <OutfitStandsPlusForked_EquipSpeedFactorUnpowered_Label>Equip speed factor (unpowered)</OutfitStandsPlusForked_EquipSpeedFactorUnpowered_Label>
     <OutfitStandsPlusForked_EquipSpeedFactor_Tooltip>Modifies speed with which pawns equip/transfer items to stands. 100 = normal speed, 0 = instant.</OutfitStandsPlusForked_EquipSpeedFactor_Tooltip>
     <OutfitStandsPlusForked_RemoveInteractionCells>Remove interaction cells</OutfitStandsPlusForked_RemoveInteractionCells>
-    <OutfitStandsPlusForked_RemoveInteractionCells_Tooltip>If enabled, mechanized and mending racks will not have interaction spots in front of them, just like vanilla outfit stands. Requires a game restart.</OutfitStandsPlusForked_RemoveInteractionCells_Tooltip>
+    <OutfitStandsPlusForked_RemoveInteractionCells_Tooltip>If enabled, mechanized, mending and tailor's racks will not have interaction spots in front of them, just like vanilla outfit stands. Requires a game restart.</OutfitStandsPlusForked_RemoveInteractionCells_Tooltip>
     <OutfitStandsPlusForked_RemoveMechanizedStands>Remove mechanized stands</OutfitStandsPlusForked_RemoveMechanizedStands>
     <OutfitStandsPlusForked_RemoveMechanizedStands_Tooltip>If enabled, mechanized outfit stands and their research project will be removed from the game. Requires a game restart.</OutfitStandsPlusForked_RemoveMechanizedStands_Tooltip>
     <OutfitStandsPlusForked_RemoveMendingStands>Remove mending stands</OutfitStandsPlusForked_RemoveMendingStands>

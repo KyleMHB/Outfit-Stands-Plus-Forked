@@ -138,7 +138,9 @@ namespace OutfitStandsPlusForked.Jobs
                 lastTick = Find.TickManager.TicksGame;
                 speed = 0f;
             };
+            // Both tick paths: the game calls one or the other per pawn, and MendTick works from elapsed game ticks.
             work.tickAction = MendTick;
+            work.tickIntervalAction = delta => MendTick();
 
             yield return findStack;
             yield return gotoStack;
@@ -152,7 +154,12 @@ namespace OutfitStandsPlusForked.Jobs
             var stand = Stand;
             var comp = stand.GetComp<CompTailorMending>();
             int now = Find.TickManager.TicksGame;
-            int delta = Mathf.Clamp(now - lastTick, 1, 60);
+            int delta = Mathf.Min(now - lastTick, 60);
+            if (delta <= 0)
+            {
+                return;
+            }
+
             lastTick = now;
             pawn.rotationTracker.FaceTarget(stand);
 

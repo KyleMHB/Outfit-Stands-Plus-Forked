@@ -101,7 +101,7 @@ public class TailorBatch : Batch
         var taintedHat = Make("Apparel_CowboyHat", 0.3f);
         taintedHat.WornByCorpse = true;
         bool added = scene.Stand.AddApparel(shirt) & scene.Stand.AddApparel(pants) & scene.Stand.AddApparel(vest) & scene.Stand.AddApparel(taintedHat);
-        Stock(ctx, scene, cloth, 200, 8, 5);
+        Stock(ctx, scene, cloth, 50, 8, 5);
         int vestHp = vest.HitPoints, hatHp = taintedHat.HitPoints;
         if (Kit.Require(ctx, "osp.tailor-eligibility", (added, "shirt, pants, flak vest and tainted hat all went onto the stand")))
         {
@@ -120,7 +120,7 @@ public class TailorBatch : Batch
         NewStand(ctx, scene);
         shirt = Make("Apparel_BasicShirt", 0.95f);
         scene.Stand.AddApparel(shirt);
-        Stock(ctx, scene, cloth, 100, 8, 5);
+        Stock(ctx, scene, cloth, 50, 8, 5);
         int aboveHp = shirt.HitPoints;
         yield return Wait.Ticks(900, scene.Watch);
         bool idleAbove = !scene.SawMend && shirt.HitPoints == aboveHp;
@@ -141,8 +141,8 @@ public class TailorBatch : Batch
             NewStand(ctx, scene);
             shirt = Make("Apparel_BasicShirt", 0.3f);
             scene.Stand.AddApparel(shirt);
-            Stock(ctx, scene, cloth, 100, 8, 5);
-            int expected = (int) Math.Ceiling(shirt.MaxHitPoints * 0.8);
+            Stock(ctx, scene, cloth, 50, 8, 5);
+            int expected = (shirt.MaxHitPoints * 80 + 99) / 100;
             yield return Wait.Until(() => shirt.HitPoints >= expected && scene.Tailor.CurJob?.def != MendJob, MendTicks, scene.Watch);
             yield return Wait.Ticks(400, scene.Watch);
             ctx.Begin("osp.tailor-limit").Subject(scene.Tailor)
@@ -160,9 +160,9 @@ public class TailorBatch : Batch
         NewStand(ctx, scene);
         shirt = Make("Apparel_BasicShirt", 0.3f);
         scene.Stand.AddApparel(shirt);
-        var clothStack = Stock(ctx, scene, cloth, 100, 8, 4);
-        var leatherStack = Stock(ctx, scene, leather, 100, 9, 4);
-        var strandStack = Stock(ctx, scene, devilstrand, 50, 10, 4);
+        Stock(ctx, scene, cloth, 50, 8, 4);
+        Stock(ctx, scene, leather, 50, 9, 4);
+        Stock(ctx, scene, devilstrand, 50, 10, 4);
         var cheapest = cloth.BaseMarketValue <= leather.BaseMarketValue ? cloth : leather;
         int missing = shirt.MaxHitPoints - shirt.HitPoints, blocks = (missing + 9) / 10;
         var before = new[] { cloth, leather, devilstrand }.ToDictionary(d => d, d => Kit.CountOnMap(ctx.Map, d));
@@ -180,9 +180,9 @@ public class TailorBatch : Batch
         NewStand(ctx, scene);
         shirt = Make("Apparel_BasicShirt", 0.3f);
         scene.Stand.AddApparel(shirt);
-        var forbiddenCloth = Stock(ctx, scene, cloth, 100, 8, 4);
-        forbiddenCloth.SetForbidden(true, false);
-        Stock(ctx, scene, leather, 100, 9, 4);
+        Stock(ctx, scene, cloth, 50, 8, 4);
+        foreach (var stack in ctx.Map.listerThings.ThingsOfDef(cloth).ToList()) stack.SetForbidden(true, false);
+        Stock(ctx, scene, leather, 50, 9, 4);
         missing = shirt.MaxHitPoints - shirt.HitPoints;
         blocks = (missing + 9) / 10;
         int clothBefore = Kit.CountOnMap(ctx.Map, cloth), leatherBefore = Kit.CountOnMap(ctx.Map, leather);
@@ -198,7 +198,7 @@ public class TailorBatch : Batch
         NewStand(ctx, scene);
         shirt = Make("Apparel_BasicShirt", 0.3f);
         scene.Stand.AddApparel(shirt);
-        Stock(ctx, scene, cloth, 100, 8, 4);
+        Stock(ctx, scene, cloth, 50, 8, 4);
         int hp0 = shirt.HitPoints;
         missing = shirt.MaxHitPoints - hp0;
         blocks = (missing + 9) / 10;
@@ -221,7 +221,7 @@ public class TailorBatch : Batch
         NewStand(ctx, scene);
         shirt = Make("Apparel_BasicShirt", 0.3f);
         scene.Stand.AddApparel(shirt);
-        Stock(ctx, scene, cloth, 100, 8, 4);
+        Stock(ctx, scene, cloth, 50, 8, 4);
         scene.Comp.MendingEnabled = false;
         hp0 = shirt.HitPoints;
         yield return Wait.Ticks(900, scene.Watch);
@@ -280,14 +280,16 @@ public class TailorBatch : Batch
         var pants = Make("Apparel_Pants", 0.3f);
         scene.Stand.AddApparel(shirt);
         scene.Stand.AddApparel(pants);
-        swapper.apparel.DestroyAll();
-        ctx.Setup($"Developer stripped {swapper.LabelShort} so the stand's apparel can be worn");
-        Stock(ctx, scene, ThingDefOf.Cloth, 200, 8, 4);
+        Stock(ctx, scene, ThingDefOf.Cloth, 50, 8, 4);
         int hp0 = shirt.HitPoints;
         yield return Wait.Until(() => shirt.HitPoints >= hp0 + 5, MendTicks, scene.Watch);
         int hpAtTakeover = shirt.HitPoints;
         bool mending = scene.Tailor.CurJob?.def == MendJob;
         bool yielded = false;
+        // Stripped in the same tick the stand is taken, so the idle swapper cannot pick the apparel up first; the auto-use path
+        // also needs it, as it rejects a stand item whose def the pawn already wears.
+        swapper.apparel.DestroyAll();
+        ctx.Setup($"Developer stripped {swapper.LabelShort} just before it takes the stand");
         takeStand(swapper);
         yield return Wait.Until(() => swapper.apparel.WornApparel.Contains(shirt), JobTicks,
             () => { yielded |= scene.Tailor.CurJob?.def != MendJob; Kit.KeepRested(scene.Tailor)(); });
@@ -299,7 +301,6 @@ public class TailorBatch : Batch
             .Check(mending && yielded && worn && shirt.HitPoints >= hpAtTakeover,
                 "the swap or auto-use path was blocked by, or did not end, the mending job");
         swapper.jobs.EndCurrentJob(JobCondition.InterruptForced);
-        swapper.apparel.DestroyAll();
         Clear(ctx, scene, swapper);
     }
 
