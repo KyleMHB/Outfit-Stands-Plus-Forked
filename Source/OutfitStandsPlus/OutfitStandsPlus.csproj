@@ -90,19 +90,24 @@
         <Compile Include="HarmonyPatches\ForceWearWithoutOdysseyPatch.cs" />
         <Compile Include="HarmonyPatches\OutfitStandsPlusPatches.cs" />
         <Compile Include="Jobs\JobDriver_OutfitStandsPlusReturnToStand.cs" />
+        <Compile Include="Jobs\JobDriver_MendTailorStand.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="ThingComps\OutfitStandsPlusMainComp.cs" />
         <Compile Include="ThingComps\OutfitStandsPlusStandComp.cs" />
         <Compile Include="ThingComps\OutfitStandsPlusUseCommandsComp.cs" />
+        <Compile Include="ThingComps\CompTailorMending.cs" />
         <Compile Include="ThingComps\CompAssignableToPawn_OutfitStandsPlusAdult.cs" />
         <Compile Include="ThingComps\CompAssignableToPawn_OutfitStandsPlusBase.cs" />
         <Compile Include="ThingComps\CompAssignableToPawn_OutfitStandsPlusKid.cs" />
         <Compile Include="Things\MechanizedOutfitStand.cs" />
         <Compile Include="Things\MendingOutfitStand.cs" />
         <Compile Include="Things\OutfitStandPlusMinified.cs" />
+        <Compile Include="Things\TailorOutfitStand.cs" />
         <Compile Include="Utility\OutfitStandAutoUseUtility.cs" />
         <Compile Include="Utility\OutfitStandCompatibilityUtility.cs" />
         <Compile Include="Utility\OutfitStandTransferUtility.cs" />
+        <Compile Include="Utility\TailorMendingUtility.cs" />
+        <Compile Include="WorkGivers\WorkGiver_MendTailorStand.cs" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="..\..\About\About.xml">
@@ -119,6 +124,15 @@
         </Content>
         <Content Include="..\..\Defs\ThingDefs\Building_MendingOutfitStand.xml">
           <Link>Defs\ThingDefs\Building_MendingOutfitStand.xml</Link>
+        </Content>
+        <Content Include="..\..\Defs\ThingDefs\Building_TailorOutfitStand.xml">
+            <Link>Defs\ThingDefs\Building_TailorOutfitStand.xml</Link>
+        </Content>
+        <Content Include="..\..\Defs\WorkGiverDefs\WorkGivers_OutfitStandsPlus.xml">
+            <Link>Defs\WorkGiverDefs\WorkGivers_OutfitStandsPlus.xml</Link>
+        </Content>
+        <Content Include="..\..\Defs\ReservationLayerDefs\ReservationLayers_OutfitStandsPlus.xml">
+            <Link>Defs\ReservationLayerDefs\ReservationLayers_OutfitStandsPlus.xml</Link>
         </Content>
         <Content Include="..\..\Defs\ThingDefs\OutfitStandPlusMinified.xml">
           <Link>Defs\ThingDefs\OutfitStandPlusMinified.xml</Link>

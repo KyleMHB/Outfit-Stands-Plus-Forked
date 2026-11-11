@@ -14,13 +14,19 @@ namespace OutfitStandsPlusForked
         public static bool RemoveMechanizedStandsDefault = false;
         public static bool RemoveMendingStandsDefault = false;
         public static bool RemoveInteractionCellsDefault = false;
-        
+        public static bool RemoveTailorStandsDefault = false;
+        public static int TailorMendStartPercentDefault = 90;
+        public static int TailorMendLimitPercentDefault = 100;
+
         public int RareTicksPerMend = RareTicksPerMendDefault;
         public int EquipSpeedFactorPowered = EquipSpeedFactorPoweredDefault;
         public int EquipSpeedFactorUnpowered = EquipSpeedFactorUnpoweredDefault;
         public static bool RemoveMechanizedStands = RemoveMechanizedStandsDefault;
         public static bool RemoveMendingStands = RemoveMendingStandsDefault;
         public static bool RemoveInteractionCells = RemoveInteractionCellsDefault;
+        public static bool RemoveTailorStands = RemoveTailorStandsDefault;
+        public static int TailorMendStartPercent = TailorMendStartPercentDefault;
+        public static int TailorMendLimitPercent = TailorMendLimitPercentDefault;
 
         public override void ExposeData()
         {
@@ -31,6 +37,17 @@ namespace OutfitStandsPlusForked
             Scribe_Values.Look(ref RemoveMechanizedStands, "RemoveMechanizedStands", RemoveMechanizedStandsDefault);
             Scribe_Values.Look(ref RemoveMendingStands, "RemoveMendingStands", RemoveMendingStandsDefault);
             Scribe_Values.Look(ref RemoveInteractionCells, "RemoveInteractionCells", RemoveInteractionCellsDefault);
+            Scribe_Values.Look(ref RemoveTailorStands, "RemoveTailorStands", RemoveTailorStandsDefault);
+            Scribe_Values.Look(ref TailorMendStartPercent, "TailorMendStartPercent", TailorMendStartPercentDefault);
+            Scribe_Values.Look(ref TailorMendLimitPercent, "TailorMendLimitPercent", TailorMendLimitPercentDefault);
+            ClampTailorMendPercents();
+        }
+
+        // The start threshold always stays below the limit, so the two settings can never conflict.
+        public static void ClampTailorMendPercents()
+        {
+            TailorMendLimitPercent = Mathf.Clamp(TailorMendLimitPercent, 2, 100);
+            TailorMendStartPercent = Mathf.Clamp(TailorMendStartPercent, 1, TailorMendLimitPercent - 1);
         }
     }
     public class OutfitStandsPlusForkedMod : Verse.Mod
@@ -84,6 +101,29 @@ namespace OutfitStandsPlusForked
                 "OutfitStandsPlusForked_RemoveMendingStands".Translate(),
                 ref OutfitStandsPlusForkedModSettings.RemoveMendingStands,
                 "OutfitStandsPlusForked_RemoveMendingStands_Tooltip".Translate());
+
+            listingStandard.CheckboxLabeled(
+                "OutfitStandsPlusForked_RemoveTailorStands".Translate(),
+                ref OutfitStandsPlusForkedModSettings.RemoveTailorStands,
+                "OutfitStandsPlusForked_RemoveTailorStands_Tooltip".Translate());
+
+            listingStandard.GapLine();
+
+            listingStandard.Label(
+                "OutfitStandsPlusForked_TailorMendStart_Label".Translate(OutfitStandsPlusForkedModSettings.TailorMendStartPercent),
+                -1f,
+                "OutfitStandsPlusForked_TailorMendStart_Tooltip".Translate());
+            OutfitStandsPlusForkedModSettings.TailorMendStartPercent =
+                Mathf.RoundToInt(listingStandard.Slider(OutfitStandsPlusForkedModSettings.TailorMendStartPercent, 1f, 99f));
+            OutfitStandsPlusForkedModSettings.ClampTailorMendPercents();
+
+            listingStandard.Label(
+                "OutfitStandsPlusForked_TailorMendLimit_Label".Translate(OutfitStandsPlusForkedModSettings.TailorMendLimitPercent),
+                -1f,
+                "OutfitStandsPlusForked_TailorMendLimit_Tooltip".Translate());
+            OutfitStandsPlusForkedModSettings.TailorMendLimitPercent =
+                Mathf.RoundToInt(listingStandard.Slider(OutfitStandsPlusForkedModSettings.TailorMendLimitPercent, 2f, 100f));
+            OutfitStandsPlusForkedModSettings.ClampTailorMendPercents();
             
             listingStandard.GapLine();
             
@@ -98,6 +138,12 @@ namespace OutfitStandsPlusForked
                     OutfitStandsPlusForkedModSettings.RemoveMendingStandsDefault;
                 OutfitStandsPlusForkedModSettings.RemoveInteractionCells =
                     OutfitStandsPlusForkedModSettings.RemoveInteractionCellsDefault;
+                OutfitStandsPlusForkedModSettings.RemoveTailorStands =
+                    OutfitStandsPlusForkedModSettings.RemoveTailorStandsDefault;
+                OutfitStandsPlusForkedModSettings.TailorMendStartPercent =
+                    OutfitStandsPlusForkedModSettings.TailorMendStartPercentDefault;
+                OutfitStandsPlusForkedModSettings.TailorMendLimitPercent =
+                    OutfitStandsPlusForkedModSettings.TailorMendLimitPercentDefault;
             }
             listingStandard.End();
             base.DoSettingsWindowContents(inRect);
@@ -127,12 +173,25 @@ namespace OutfitStandsPlusForked
                 HideResearch(DefDatabase<ResearchProjectDef>.GetNamed("OutfitStandsPlus_MendingOutfitStandsResearch"));
             }
 
+            if (OutfitStandsPlusForkedModSettings.RemoveTailorStands)
+            {
+                // The research (Complex Clothing) is vanilla, so only the buildings are hidden. The kid stand needs Biotech.
+                HideThing(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_TailorOutfitStand"));
+                var kid = DefDatabase<ThingDef>.GetNamedSilentFail("OutfitStandsPlus_TailorKidOutfitStand");
+                if (kid != null)
+                {
+                    HideThing(kid);
+                }
+            }
+
             if (OutfitStandsPlusForkedModSettings.RemoveInteractionCells)
             {
                 RemoveInteractionSpot(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MechanizedOutfitStand"));
                 RemoveInteractionSpot(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MechanizedKidOutfitStand"));
                 RemoveInteractionSpot(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MendingOutfitStand"));
                 RemoveInteractionSpot(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MendingKidOutfitStand"));
+                RemoveInteractionSpot(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_TailorOutfitStand"));
+                RemoveInteractionSpot(DefDatabase<ThingDef>.GetNamedSilentFail("OutfitStandsPlus_TailorKidOutfitStand"));
             }
         }
 
@@ -161,6 +220,11 @@ namespace OutfitStandsPlusForked
 
         static void RemoveInteractionSpot(ThingDef def)
         {
+            if (def == null)
+            {
+                return;
+            }
+
             def.hasInteractionCell = false;
         }
     }

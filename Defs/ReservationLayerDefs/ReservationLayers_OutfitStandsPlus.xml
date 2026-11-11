@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- Mending reserves a tailor's stand here, on its own layer, so it never blocks the default-layer reservation that
+         swapping, returning and auto-use take. Two tailors still exclude each other. -->
+    <ReservationLayerDef>
+        <defName>OutfitStandsPlus_Mending</defName>
+    </ReservationLayerDef>
+</Defs>

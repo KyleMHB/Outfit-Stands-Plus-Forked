@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <!-- Bills at tailoring benches are priorityInType 110. A lower number is tried later, so mending never starves production. -->
+    <WorkGiverDef>
+        <defName>OutfitStandsPlus_MendTailorStand</defName>
+        <label>mend clothes on tailor's stands</label>
+        <giverClass>OutfitStandsPlusForked.WorkGivers.WorkGiver_MendTailorStand</giverClass>
+        <workType>Tailoring</workType>
+        <priorityInType>50</priorityInType>
+        <verb>mend clothes on</verb>
+        <gerund>mending clothes on</gerund>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+    </WorkGiverDef>
+</Defs>

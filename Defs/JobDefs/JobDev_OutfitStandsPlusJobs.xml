@@ -7,4 +7,11 @@
         <suspendable>false</suspendable>
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     </JobDef>
+    <JobDef>
+        <defName>OutfitStandsPlus_MendTailorStand</defName>
+        <driverClass>OutfitStandsPlusForked.Jobs.JobDriver_MendTailorStand</driverClass>
+        <reportString>mending clothes on TargetA.</reportString>
+        <suspendable>false</suspendable>
+        <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    </JobDef>
 </Defs>

@@ -67,6 +67,41 @@ namespace OutfitStandsPlusForked.HarmonyPatches
         }
     }
 
+    // Core's stand float menu never reaches the comps, so the tailor stand's "Mend clothes" order is appended here.
+    [HarmonyPatch(typeof(Building_OutfitStand), nameof(Building_OutfitStand.GetFloatMenuOptions))]
+    public class TailorStandMendFloatMenuPatch
+    {
+        static IEnumerable<FloatMenuOption> Postfix(IEnumerable<FloatMenuOption> values, Building_OutfitStand __instance, Pawn selPawn)
+        {
+            foreach (var value in values)
+            {
+                yield return value;
+            }
+
+            if (!TailorMendingUtility.IsTailorStand(__instance) || __instance.Faction != Faction.OfPlayer ||
+                selPawn == null || !selPawn.IsColonistPlayerControlled)
+            {
+                yield break;
+            }
+
+            string label = "OutfitStandsPlusForked_MendClothes".Translate().CapitalizeFirst();
+            Job job = TailorMendingUtility.TryMakeMendJob(selPawn, __instance, true, out string whyNot);
+            if (job == null)
+            {
+                yield return new FloatMenuOption(
+                    label + " (" + whyNot + ")",
+                    null);
+                yield break;
+            }
+
+            yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, () =>
+            {
+                job.playerForced = true;
+                selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            }), selPawn, (LocalTargetInfo) (Thing) __instance);
+        }
+    }
+
     [HarmonyPatch(typeof(JobDriver_UseOutfitStand), "DoTransfer")]
     public class OutfitStandSwapOutfitPatch
     {
