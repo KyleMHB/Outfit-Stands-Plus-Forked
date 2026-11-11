@@ -1,6 +1,12 @@
 # Changelog
 
+<!-- Agent read route: read only the newest relevant release; locate older versions by searching `^## ` headings. -->
+
 ## 2026-11-11
+
+### Changed
+
+- Replaced the no-Odyssey outfit stand placeholder art with adult and child mannequin sprites and icons.
 
 ### Added
 

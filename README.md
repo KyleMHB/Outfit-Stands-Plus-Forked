@@ -37,7 +37,7 @@ Odyssey is optional. Outfit stands come from Odyssey, but their code is part of 
 
 A Harmony patch, applied only without Odyssey, lets apparel be force-worn onto a stand; the base game allows that only with Odyssey. With Odyssey active none of this loads, and the stands use Odyssey's defs and art as before.
 
-The current no-Odyssey art is a placeholder drawn by `python scripts/draw-no-odyssey-art.py`. To replace it, overwrite the PNGs under `NoOdyssey/Textures` at the same paths and sizes (128x128 stand layers, 64x64 menu icons, 128x128 command icon). Stand layers are multiplied by the stuff colour, so keep them near-white.
+The no-Odyssey art and its export recipe are recorded in `artwork/no-odyssey-stand/`. The recipe stages the PNGs for `NoOdyssey/Textures` at the required sizes (128x128 stand layers, 64x64 menu icons, 128x128 command icon). Stand layers are multiplied by the stuff colour, so keep them near-white. `scripts/draw-no-odyssey-art.py` generates the earlier placeholders; its `stand_preview()` function is still used for previews.
 
 ## Tailor's outfit stand
 
