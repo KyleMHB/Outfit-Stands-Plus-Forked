@@ -184,6 +184,14 @@ namespace OutfitStandsPlusForked
                 }
             }
 
+            // Kid stands are useless without Biotech (no children). These two load anyway so existing saves keep them and
+            // their contents; they are only taken out of the build menu.
+            if (!ModsConfig.BiotechActive)
+            {
+                HideThing(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MechanizedKidOutfitStand"));
+                HideThing(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MendingKidOutfitStand"));
+            }
+
             if (OutfitStandsPlusForkedModSettings.RemoveInteractionCells)
             {
                 RemoveInteractionSpot(DefDatabase<ThingDef>.GetNamed("OutfitStandsPlus_MechanizedOutfitStand"));
@@ -203,7 +211,7 @@ namespace OutfitStandsPlusForked
             def.thingSetMakerTags?.Clear();
             var designationCategory = def.designationCategory;
             def.designationCategory = null;
-            designationCategory.ResolveReferences();
+            designationCategory?.ResolveReferences();
             def.researchPrerequisites = null;
             def.minifiedDef = null;
             def.building.claimable = false;

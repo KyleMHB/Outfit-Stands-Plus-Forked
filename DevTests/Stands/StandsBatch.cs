@@ -84,7 +84,10 @@ public class StandsBatch : Batch
         var steel = ThingDefOf.Steel;
         var plain = (Building_OutfitStand)Kit.Place(ctx, Plain, At(2, 2), Rot4.South, steel);
         var mech = (Building_OutfitStand)Kit.Place(ctx, Mechanized, At(5, 2), Rot4.South, steel);
-        var mechKid = (Building_OutfitStand)Kit.Place(ctx, MechanizedKid, At(8, 2), Rot4.East, steel);
+        // Without Biotech the kid stand is out of the build menu but still loads (old saves), so spawn it as a save would.
+        var mechKid = biotech
+            ? (Building_OutfitStand)Kit.Place(ctx, MechanizedKid, At(8, 2), Rot4.East, steel)
+            : SpawnDirect(ctx, MechanizedKid, At(8, 2), Rot4.East, steel);
         var mending = (Building_OutfitStand)Kit.Place(ctx, Mending, At(11, 2), Rot4.North, steel);
         Building_OutfitStand kid = Kit.DefOrNull(Kid) == null ? null : (Building_OutfitStand)Kit.Place(ctx, Kid, At(14, 2), Rot4.South, ThingDefOf.WoodLog);
         Kit.HoldPower(ctx, mech, true);
@@ -110,10 +113,14 @@ public class StandsBatch : Batch
             .Check(canTarget && (patchOwners != "none") == !odyssey, "stands are not force-wear targets, or the patch state does not match Odyssey");
 
         // Draw every stand on screen for a while; drawing errors are attributed to this case.
-        var render = ctx.Begin("osp.render").Expect("drawn", "all stands visible, no errors");
+        var render = ctx.Begin("osp.render").Expect("drawn", "all stands visible, no errors").Expect("loggedErrors", 0);
         Find.CameraDriver.JumpToCurrentMapLoc(area.CenterCell);
+        long errorMark = CaseErrors.Mark;
         yield return Wait.Frames(90);
-        render.Observe("drawn", "90 frames").Observe("kidStandWithoutBiotech", !biotech ? mechKid.ThingID : "n/a").Check(true, "");
+        var drawErrors = CaseErrors.Since(errorMark).ToList();
+        render.Observe("drawn", "90 frames").Observe("kidStandWithoutBiotech", !biotech ? mechKid.ThingID : "n/a")
+            .Observe("loggedErrors", drawErrors.Count).Observe("errors", drawErrors.Count == 0 ? "none" : string.Join(" | ", drawErrors))
+            .Check(drawErrors.Count == 0, "errors were logged while the stands were drawn");
 
         // Vanilla use job on the plain stand: the colonist should end up wearing the duster from the stand.
         pawn.jobs.StartJob(JobMaker.MakeJob(JobDefOf.UseOutfitStand, plain), JobCondition.InterruptForced);
@@ -142,6 +149,16 @@ public class StandsBatch : Batch
         ctx.Remember("mechKid", mechKid.ThingID);
         ctx.Remember("mending", mending.ThingID);
         yield return Wait.Reload();
+    }
+
+    private static Building_OutfitStand SpawnDirect(BatchContext ctx, string defName, IntVec3 cell, Rot4 rot, ThingDef stuff)
+    {
+        var thing = ThingMaker.MakeThing(Kit.Def(defName), stuff);
+        thing.SetFaction(Faction.OfPlayer);
+        var spawned = (Building_OutfitStand)GenSpawn.Spawn(thing, cell, ctx.Map, rot);
+        TestCamera.Include(ctx.Map, spawned.OccupiedRect());
+        ctx.Setup($"Developer spawned {defName} ({spawned.ThingID}) at {cell} facing {rot} directly (not in the build menu without Biotech)");
+        return spawned;
     }
 
     private static string PatchedOwners()

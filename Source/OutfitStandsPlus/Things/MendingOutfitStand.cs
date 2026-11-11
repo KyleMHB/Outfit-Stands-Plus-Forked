@@ -117,6 +117,9 @@ namespace OutfitStandsPlusForked.Things
     public class MendingKidOutfitStand : Building_KidOutfitStand, IMendingOutfitStand
     {
         private MendingHandler MendingHandler;
+
+        // BodyTypeDefOf.Child only exists with Biotech; core's HeadOffsetAt throws on a null body type every frame.
+        protected override BodyTypeDef BodyTypeDefForRendering => base.BodyTypeDefForRendering ?? BodyTypeDefOf.Male;
         public MendingKidOutfitStand()
         {
             MendingHandler = new MendingHandler(this);
