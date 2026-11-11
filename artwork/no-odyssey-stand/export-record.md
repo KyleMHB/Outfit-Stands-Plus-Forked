@@ -38,3 +38,18 @@ All 19 staged files are RGBA and have the dimensions shown. Bounds below are Pil
 | `Things/Building/OutfitStand/OutfitStand_MenuIcon_north.png` | 64x64 | (15, 3, 49, 61) | `6638184D11316F671587B09F7E69F557A149F81823B24172F790DBABBF2952C1` |
 | `Things/Building/OutfitStand/OutfitStand_MenuIcon_south.png` | 64x64 | (15, 3, 49, 61) | `59C487FEF14CCE3CC2CE138FAEE7CA55C49C62CC3FF745A391A4B342E32B8B92` |
 | `UI/Commands/SwapOutfits.png` | 128x128 | (6, 14, 121, 114) | `DB1EB3F6C57E27FE65A789EE2D631B05FA38AEF07466DB02AF4CFB44A6AD9528` |
+
+## Regenerated torsos (2026-11-11)
+
+The six torso textures were replaced by the regenerated sources in `torso-regenerated/` (commit 7dc9811), exported by `python artwork/no-odyssey-stand/export-torso.py`: crop to visible pixels, one uniform Lanczos reduction into the existing torso areas (adult x39 y43 50x65; kid x49 y43 30x52, east x46 36x52), top-aligned at y43, then the same greyscale curve and 2 px inward contour as `export.py`. The dark neck collar is no longer drawn. The script also rebuilds the six 64x64 menu icons from the new layers, composed as in `export.py`. `export.py` still writes the old torsos; run `export-torso.py` after it.
+
+Neck check (stand_preview, middle 60% of the head width, columns with ground between head and torso): adult 7/5/9, kid 5/3/8 for south/east/north, against 10/11/11 and 5/0/7 before (Odyssey's own: adult 0/2/0, kid 4/5/4). The user reviewed the stands in game (Biotech set) and approved the look on 2026-11-11. osp-stands passed 8/8 in three reruns with these textures.
+
+| Texture | SHA-256 |
+| --- | --- |
+| `OutfitStand_BodyChild_east.png` | `2443F089DF856C0FF30272BFCB7657BDC2CD7C3C4CFC8B38D4AF604A90090CC8` |
+| `OutfitStand_BodyChild_north.png` | `9E4DD137CD7CD1EA8892C5288B9E3290B6DB6F9D743A818AC4F6F0A652AC7A00` |
+| `OutfitStand_BodyChild_south.png` | `C8A7A0BDA877B810C2856E28DD8ECCD1130AE86EDC3D8504970F3B80EC5AB68B` |
+| `OutfitStand_Body_east.png` | `2456F65B8BA123EC1BABA1CF66F44A7862452C1EC5DB9E17DA3B7291F038596E` |
+| `OutfitStand_Body_north.png` | `922D04FCC5431491CE675A2C5FDC5FE3244191CF03232C6FFAFB5B509FF549D1` |
+| `OutfitStand_Body_south.png` | `E280CEBE3E76ED1E03A5A91207E1833CBD238BB68978C2C6E28E6BBF5EB7CB6A` |
