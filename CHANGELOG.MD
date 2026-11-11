@@ -6,7 +6,12 @@
 
 ### Changed
 
-- Replaced the no-Odyssey outfit stand placeholder art with adult and child mannequin sprites and icons.
+- Replaced the no-Odyssey outfit stand placeholder art with adult and child mannequin sprites and icons. The new torso sits further under the head, so much less ground shows through at the neck.
+- Bumped assembly version to `1.1.0.0`.
+
+### Fixed
+
+- Mechanized and mending kid stands no longer throw an error every frame without Biotech (also with Odyssey). Without Biotech they draw the adult mannequin and are left out of the build menu; existing ones keep working and keep their contents.
 
 ### Added
 
@@ -23,7 +28,7 @@
 
 - Odyssey is no longer required. Without Odyssey the mod supplies the plain and kid outfit stands (same defNames as Odyssey's, so saves carry over if Odyssey is added later; the kid stand needs Biotech), the stand jobs, the stand text and its own stand art. Odyssey players load exactly what they did before.
 - Without Odyssey, apparel can still be force-worn onto an outfit stand; core only allows that with Odyssey, so a small patch enables it when Odyssey is off.
-- The art used without Odyssey is a scripted placeholder (`scripts/draw-no-odyssey-art.py`) until final art replaces it.
+- The art used without Odyssey was a scripted placeholder (`scripts/draw-no-odyssey-art.py`); replaced on 2026-11-11.
 - The project now builds against the 1.6 reference assemblies in the NuGet cache, since RimWorld 1.7 no longer ships the Unity managed folder.
 
 ### Added

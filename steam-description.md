@@ -10,7 +10,7 @@
 [*][b]Single-pawn assignment:[/b] Keep each stand assigned to one pawn and repair older multi-pawn assignments.
 [*][b]Safer transfers:[/b] Skip missing, forbidden, locked, forced, incompatible, or otherwise invalid gear instead of dropping or duplicating it.
 [*][b]Optional integrations:[/b] Coordinate with Gear Up And Go and Defensive Positions Forked when loaded.
-[*][b]Tailor's outfit stand:[/b] An unpowered stand unlocked by Complex Clothing. Your Tailoring colonists mend the cloth and leather clothes kept on it for a little cloth or leather, and swapping into an outfit always interrupts them. Start and stop percentages are mod settings.
+[*][b]Tailor's outfit stand:[/b] An unpowered stand unlocked by Complex Clothing. Your Tailoring colonists mend the cloth and leather clothes kept on it for a little cloth or leather, and swapping into an outfit always interrupts them. Start and stop percentages are mod settings. Its sewing-kit art is a placeholder for now.
 [/list]
 
 [h1]How to Use[/h1]
@@ -27,7 +27,7 @@ The mod uses stand gizmos, assignments, and selected apparel policies. The mod s
 [/list]
 
 [h1]Playing without Odyssey[/h1]
-Odyssey is not required. Without it, the mod adds the plain outfit stand and, with Biotech, the kid outfit stand, plus everything they need to work, so the mechanized and mending stands work too. Stands built without Odyssey stay in your save if you add Odyssey later. The stand art used without Odyssey is placeholder art for now. With Odyssey enabled nothing changes: you get Odyssey's own stands and art.
+Odyssey is not required. Without it, the mod adds the plain outfit stand and, with Biotech, the kid outfit stand, plus everything they need to work, so the mechanized and mending stands work too. Stands built without Odyssey stay in your save if you add Odyssey later. Without Odyssey the stands use the mod's own mannequin art; with Odyssey enabled nothing changes and you get Odyssey's own stands and art. Without Biotech there are no children, so the mechanized and mending kid stands are left out of the build menu; any you already built still work.
 
 [h1]Compatibility, Load Order, Multiplayer, and Save Safety[/h1]
 [list]
