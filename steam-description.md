@@ -10,13 +10,14 @@
 [*][b]Single-pawn assignment:[/b] Keep each stand assigned to one pawn and repair older multi-pawn assignments.
 [*][b]Safer transfers:[/b] Skip missing, forbidden, locked, forced, incompatible, or otherwise invalid gear instead of dropping or duplicating it.
 [*][b]Optional integrations:[/b] Coordinate with Gear Up And Go and Defensive Positions Forked when loaded.
+[*][b]Tailor's outfit stand:[/b] An unpowered stand unlocked by Complex Clothing. Your Tailoring colonists mend the cloth and leather clothes kept on it for a little cloth or leather, and swapping into an outfit always interrupts them. Start and stop percentages are mod settings.
 [/list]
 
 [h1]How to Use[/h1]
 Assign a pawn to a stand, choose the stand's apparel policies, and use its gizmos to rename it or control gear flow. For several selected pawns, use the shared assigned-stands command and its right-click options to choose Swap or Return behavior.
 
 [h1]Settings and Configuration[/h1]
-The mod uses stand gizmos, assignments, and selected apparel policies. No separate configuration utility is required for normal use.
+The mod uses stand gizmos, assignments, and selected apparel policies. The mod settings cover the mending stand rate, equip speed, hiding stand types, and the tailor's stand's "start mending below" and "mend up to" percentages. Each tailor's stand also has an "Allow mending" toggle and a right-click "Mend clothes" order.
 
 [h1]Requirements and Dependencies[/h1]
 [list]

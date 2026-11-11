@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-11
+
+### Added
+
+- Tailor's outfit stand and, with Biotech, tailor's kid outfit stand. Unlocked by Complex Clothing, built from wood or metal plus a little cloth, no power. Full outfit stand features (assignment, naming, swap and return, auto-use, group commands) plus mending: colonists who do Tailoring come to the stand and mend the cloth and leather apparel kept on it, spending one cloth or leather per 10 hit points (cheapest textile first, forbidden stacks left alone). Armour, tainted apparel and weapons are ignored. Mending is Tailoring work, ranked after tailoring-bench bills, gives Crafting experience and is scaled by general labour speed.
+- Per-stand "Allow mending" toggle and a right-click "Mend clothes" order, which ignores the start threshold and the toggle but respects the "mend up to" limit.
+- Mod settings "Start mending below" (default 90%), "Mend up to" (default 100%) and "Remove tailor's stands". The start threshold is always kept below the limit. They do not affect mending stands.
+- Swapping, returning and auto-use always win over mending: the tailor yields at once and keeps the hit points already applied and any paid-for but unspent hit points.
+- A sewing-kit overlay on the tailor's stands and their own build-menu icons. Both are scripted placeholders (`scripts/draw-tailor-stand-art.py`) until final art replaces them.
+- Developer test batch `osp-tailor`, and a `biotech` test mod set.
+
 ## 2026-11-09
 
 ### Changed

@@ -1,6 +1,6 @@
 # Spec: Tailor's outfit stand
 
-Status: ready-for-agent. Agreed with the maintainer on 2026-11-11 through a design interview. No implementation yet.
+Status: implemented on 2026-11-11, pending in-game verification (the `osp-tailor` DevTests batch builds but has not been run, and the overlay and menu icons have not been looked at in game). Agreed with the maintainer on 2026-11-11 through a design interview.
 
 ## Problem Statement
 
