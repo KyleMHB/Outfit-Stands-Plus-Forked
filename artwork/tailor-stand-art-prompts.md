@@ -17,9 +17,9 @@ Object: a small round wicker sewing basket with a lid tipped open, two thread sp
 
 RimWorld object sprite matching vanilla furniture: top-down three-quarter camera, dark charcoal exterior and inter-material contour about 2 px at 128 px, a few broad flat shading planes per material with smooth antialiasing, no photographic lighting, no noise, genuine transparency.
 
-Framing (final export): 128x128 PNG canvas, drawn by the game at 1.4x1.4 map cells centred on the stand. The basket sits in the FRONT-RIGHT corner, beside the plinth and not over it: visible bounds about x 88-122, y 90-124. The plinth occupies about x 34-92, y 87-122, and the mannequin rises from the centre. Leave everything else transparent.
+Framing (final export): 128x128 PNG canvas, drawn by the game at 1.4x1.4 map cells centred on the stand. The basket sits in the FRONT-RIGHT corner, tucked against the plinth's right edge (it may overlap the plinth rim by a few pixels): visible bounds about x 80-114, y 90-124. This placement was set after an in-game review; further right looks detached from the stand. The plinth occupies about x 34-92, y 87-122, and the mannequin rises from the centre. Leave everything else transparent.
 
-Views: generate the south (front) view as the master first and show it to me for approval. After approval, derive north (basket seen from behind, now in the front-left from the camera's side, i.e. mirror the placement: bounds about x 6-40, y 90-124) and east (seen from the side, placed front-right) as views of the same physical basket. Same parts, counts, proportions and palette; repaint for the view, don't just rotate.
+Views: generate the south (front) view as the master first and show it to me for approval. After approval, derive north (basket seen from behind, same screen position: bounds about x 80-114, y 86-120) and east (seen from the side, bounds about x 78-112) as views of the same physical basket. Same parts, counts, proportions and palette; repaint for the view, don't just rotate.
 
 Export: generate large (1024 px or more), then crop to visible pixels, scale uniformly with one reduction, and place into the 128x128 canvas at the bounds above. Overwrite:
   Textures/Things/Building/OutfitStand/TailorStand_SewingKit_south.png

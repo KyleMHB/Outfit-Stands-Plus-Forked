@@ -101,7 +101,7 @@ def basket_parts(cx=104, cy=110):
 
 def draw_overlay(view):
     """128px sewing-kit overlay: only the basket group, in the front-right corner beside the plinth."""
-    cx = 105 if view != 'east' else 103
+    cx = 97 if view != 'east' else 95  # tucked against the plinth's right edge (moved in 8 px after in-game review)
     cy = 108 if view != 'north' else 104  # seen from behind the kit sits a little further back
     return compose_rgb(basket_parts(cx, cy))
 
